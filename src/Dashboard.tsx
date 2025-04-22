@@ -31,15 +31,34 @@ const Dashboard = () => {
 
   const activeSidebar = (item: string) => {
     setActiveSidebarItem(item);
-    if (item === "Create Zone") setCreateZone("Launcher");
+    if (item === "Create Zone") {
+      setCreateZone("Launcher");
+    } else {
+      setCreateZone(null);
+    }
 
-    if (item === "Memory Zone") setMemoryZone("Semantic Engine");
+    if (item === "Memory Zone") {
+      setMemoryZone("Semantic Engine");
+    } else {
+      setMemoryZone(null);
+    }
 
-    if (item === "Public Zone") setPublicZone("Export Hub");
+    if (item === "Publish Zone") {
+      setPublicZone("Export Hub");
+    } else {
+      setPublicZone(null);
+    }
 
-    if (item === "Analytics") setAnalytics("Usage Dashboard");
-
-    if (item === "Admin Tools") setAdminTools("System Settings");
+    if (item === "Analytics") {
+      setAnalytics("Usage Dashboard");
+    } else {
+      setAnalytics(null);
+    }
+    if (item === "Admin Tools") {
+      setAdminTools("System Settings");
+    } else {
+      setAdminTools(null);
+    }
   };
 
   return (
@@ -214,7 +233,11 @@ const Dashboard = () => {
             </div>
           </header>
         </div>
-        {createZone === null && <OverView />}
+        {createZone === null &&
+          memoryZone === null &&
+          publicZone === null &&
+          analytics === null &&
+          adminTools === null && <OverView />}
         {createZone === "Launcher" && (
           <Launcher setCreateZone={setCreateZone} />
         )}
