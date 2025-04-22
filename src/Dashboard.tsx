@@ -145,7 +145,7 @@ const Dashboard = () => {
     }
   };
 
-  const handlePinItem = (item: any) => {
+  const handlePinItem = (item: { id: string; title?: string; type?: string; lastUsed?: string; toneScore?: number; tags?: string[]; }) => {
     // Check if already pinned
     const isPinned = pinnedItems.some(
       (pinnedItem) => pinnedItem.id === item.id
@@ -158,7 +158,17 @@ const Dashboard = () => {
       );
     } else {
       // Pin
-      setPinnedItems([...pinnedItems, item]);
+      setPinnedItems([
+        ...pinnedItems,
+        {
+          id: item.id,
+          title: item.title || "",
+          type: item.type || "",
+          lastUsed: item.lastUsed || "",
+          toneScore: item.toneScore || 0,
+          tags: item.tags || [],
+        },
+      ]);
     }
   };
 

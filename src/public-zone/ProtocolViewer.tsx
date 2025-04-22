@@ -32,7 +32,7 @@ const SignalObjectProtocolViewer = () => {
   const [selectedVersion, setSelectedVersion] = useState('v1.1');
 
   const [compareMode, setCompareMode] = useState(false);
-  const [compareVersion, setCompareVersion] = useState('v1.0');
+  const [compareVersion, setCompareVersion] = useState<'v1.0' | 'v1.1'>('v1.0');
   const [expandedSections, setExpandedSections] = useState({
     metadata: true,
     content: true,
@@ -134,7 +134,7 @@ const SignalObjectProtocolViewer = () => {
   const getDiff = (p0: null, path = []) => {
     const obj1 = getNestedValue(protocolObjects[selectedVersion as 'v1.0' | 'v1.1'], path);
 
-    const obj2 = getNestedValue(protocolObjects[compareVersion], path);
+    const obj2 = getNestedValue(protocolObjects[compareVersion as 'v1.0' | 'v1.1'], path);
     
     if (typeof obj1 === 'object' && obj1 !== null && typeof obj2 === 'object' && obj2 !== null) {
       // If both are objects, we're just rendering a key name, not a value
@@ -196,7 +196,7 @@ const SignalObjectProtocolViewer = () => {
               <div className="flex items-start">
                 {isObject && (
                   <button 
-                    onClick={() => toggleSection(`${newPath.join('.')}`)}
+                    onClick={() => toggleSection(`${newPath.join('.')}` as keyof typeof expandedSections)}
                     className="mr-1 p-1 rounded hover:bg-gray-200 focus:outline-none"
                   >
                     {expandedSections[`${newPath.join('.')}`] ? 
@@ -266,7 +266,7 @@ const SignalObjectProtocolViewer = () => {
           {compareMode && (
             <select 
               value={compareVersion} 
-              onChange={(e) => setCompareVersion(e.target.value)}
+              onChange={(e) => setCompareVersion(e.target.value as 'v1.0' | 'v1.1')}
               className="border rounded-md px-3 py-1.5 bg-white text-sm"
             >
               {versions.filter(v => v !== selectedVersion).map(version => (

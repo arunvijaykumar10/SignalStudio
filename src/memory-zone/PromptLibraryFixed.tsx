@@ -1,9 +1,29 @@
-import React, { useState } from "react";
+import { SetStateAction, useState } from "react";
 
 const PromptLibrary = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedPrompt, setSelectedPrompt] = useState(null);
-  const [activeFilters, setActiveFilters] = useState({
+  const [selectedPrompt, setSelectedPrompt] = useState<{
+    id: number;
+    title: string;
+    description: string;
+    instructions: string;
+    category: string;
+    objective: string;
+    tone: string;
+    persona: string;
+    tags: string[];
+    creator: string;
+    dateCreated: string;
+    lastUsed: string;
+    usageCount: number;
+    exampleOutput: string;
+  } | null>(null);
+  const [activeFilters, setActiveFilters] = useState<{
+    category: string[];
+    persona: string[];
+    tone: string[];
+    objective: string[];
+  }>({
     category: [],
     persona: [],
     tone: [],
@@ -143,11 +163,11 @@ const PromptLibrary = () => {
     ],
   };
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = (e: { target: { value: SetStateAction<string>; }; }) => {
     setSearchQuery(e.target.value);
   };
 
-  const handleFilterChange = (category, value) => {
+  const handleFilterChange = (category: keyof typeof activeFilters, value: any) => {
     setActiveFilters((prev) => {
       const updated = { ...prev };
       if (updated[category].includes(value)) {
@@ -169,7 +189,7 @@ const PromptLibrary = () => {
     setSearchQuery("");
   };
 
-  const handlePromptSelect = (prompt) => {
+  const handlePromptSelect = (prompt: SetStateAction<{ id: number; title: string; description: string; instructions: string; category: string; objective: string; tone: string; persona: string; tags: string[]; creator: string; dateCreated: string; lastUsed: string; usageCount: number; exampleOutput: string; } | null>) => {
     setSelectedPrompt(prompt);
   };
 
@@ -177,7 +197,7 @@ const PromptLibrary = () => {
     setShowCreateModal(!showCreateModal);
   };
 
-  const handleViewModeChange = (mode) => {
+  const handleViewModeChange = (mode: SetStateAction<string>) => {
     setViewMode(mode);
   };
 
@@ -294,14 +314,14 @@ const PromptLibrary = () => {
                   {category}
                 </h4>
                 <div className="flex flex-wrap gap-1.5">
-                  {filterOptions[category].map((option) => (
+                  {filterOptions[category as keyof typeof filterOptions].map((option) => (
                     <button
                       key={option}
-                      onClick={() => handleFilterChange(category, option)}
+                      onClick={() => handleFilterChange(category as keyof typeof activeFilters, option)}
                       className={`px-2 py-1 text-xs rounded-full ${
-                        activeFilters[category].includes(option)
-                          ? "bg-blue-100 text-blue-800"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      activeFilters[category as keyof typeof activeFilters].includes(option)
+                        ? "bg-blue-100 text-blue-800"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                       }`}
                     >
                       {option}

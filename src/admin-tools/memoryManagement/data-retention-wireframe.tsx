@@ -12,11 +12,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const DataRetentionExpiry = () => {
-  const [expandedSection, setExpandedSection] = useState("retention");
+  const [expandedSection, setExpandedSection] = useState<string | null>(
+    "retention"
+  );
   const navigate = useNavigate();
 
-  const toggleSection = (section: any) => {
-    setExpandedSection(expandedSection === section ? null : section);
+  const toggleSection = (section: string) => {
+    setExpandedSection((prevState) => (prevState === section ? null : section));
   };
 
   return (
