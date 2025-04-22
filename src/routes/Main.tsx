@@ -25,6 +25,11 @@ import IntegrationLayer from "../public-zone/Integration";
 import SignalObjectProtocolViewer from "../public-zone/ProtocolViewer";
 import CLISDKPanel from "../public-zone/SDK";
 import SystemOverview from "../SystemOverview";
+import MemoryManagement from "../admin-tools/memoryManagement/MemoryManagement";
+import MemoryOptimizationSettings from "../admin-tools/memoryManagement/memory-optimization-settings";
+import ManualMemoryCleanup from "../admin-tools/memoryManagement/manual-memory-cleanup";
+import ArchivedMemoryVault from "../admin-tools/memoryManagement/archived-memory-vault";
+import DataRetentionExpiry from "../admin-tools/memoryManagement/data-retention-wireframe";
 
 const Main = () => {
   return (
@@ -66,14 +71,27 @@ const Main = () => {
           {/* Admin Tools */}
           <Route
             path="admintools/memorymanageement"
-            element={<TeamManagement />}
+            element={<MemoryManagement />}
+          />
+          <Route
+            path="admintools/memorymanageement/1"
+            element={<MemoryOptimizationSettings />}
+          />
+          <Route
+            path="admintools/memorymanageement/2"
+            element={<ManualMemoryCleanup />}
+          />
+          <Route
+            path="admintools/memorymanageement/3"
+            element={<DataRetentionExpiry />}
+          />
+          <Route
+            path="admintools/memorymanageement/4"
+            element={<ArchivedMemoryVault />}
           />
           <Route path="admintools/team" element={<TeamManagement />} />
           <Route path="admintools/aiconfig" element={<AIConfig />} />
-          <Route
-            path="admintools/aiconfig/settings"
-            element={<AiSettings />}
-          />
+          <Route path="admintools/aiconfig/settings" element={<AiSettings />} />
           <Route
             path="admintools/aiconfig/configure"
             element={<AiConfigure />}
