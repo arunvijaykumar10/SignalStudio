@@ -238,7 +238,10 @@ const Dashboard = () => {
               </span>
             </button>
 
-            <div className="flex items-center cursor-pointer">
+            <div
+              className="flex items-center cursor-pointer"
+              onClick={() => navigate("settings")}
+            >
               <div className="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center text-white">
                 <User size={16} />
               </div>

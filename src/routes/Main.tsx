@@ -22,6 +22,7 @@ import SnippetManager from "../memory-zone/SnippetManager";
 import SignalExportHub from "../public-zone/ExportHub";
 import IntegrationLayer from "../public-zone/Integration";
 import SignalObjectProtocolViewer from "../public-zone/ProtocolViewer";
+import UserProfileWireframe from "../user-settings/UserSettings";
 import TeamManagement from "../admin-tools/team/TeamManagement";
 import CLISDKPanel from "../public-zone/SDK";
 import SystemOverview from "../SystemOverview";
@@ -68,6 +69,7 @@ const Main = () => {
             path="publishzone/protocol"
             element={<SignalObjectProtocolViewer />}
           />
+          <Route path="settings" element={<UserProfileWireframe />} />
           {/* Analytics */}
           {/* Admin Tools */}
           <Route
