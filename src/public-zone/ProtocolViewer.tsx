@@ -28,9 +28,7 @@ export type DiffError = {
 };
 
 const SignalObjectProtocolViewer = () => {
-  const [selectedVersion, setSelectedVersion] = useState<'v1.0' | 'v1.1'>('v1.1');
 
-const SignalObjectProtocolViewer = () => {
   const [selectedVersion, setSelectedVersion] = useState('v1.1');
 
   const [compareMode, setCompareMode] = useState(false);
