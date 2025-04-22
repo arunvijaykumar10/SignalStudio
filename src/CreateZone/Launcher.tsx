@@ -1,7 +1,7 @@
 import { Clock, Star, User, Zap } from "lucide-react";
 import { useState } from "react";
 
-const Launcher = ({ setCreateZone }: any) => {
+const Launcher = () => {
   const [selectedPrompt, setSelectedPrompt] = useState<{
     id: number;
     category: string;
@@ -276,7 +276,6 @@ const Launcher = ({ setCreateZone }: any) => {
               // }`}
               // disabled={!selectedPrompt || !selectedPersona}
               className={`w-full py-3 rounded-lg font-medium ${"bg-indigo-600 text-white hover:bg-indigo-700"}`}
-              onClick={() => setCreateZone("Editor")}
             >
               Generate Draft
             </button>

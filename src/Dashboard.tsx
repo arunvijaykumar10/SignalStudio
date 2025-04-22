@@ -1,69 +1,19 @@
-import {
-  BarChart,
-  Bell,
-  Brain,
-  ChevronDown,
-  Search,
-  Send,
-  Settings,
-  User,
-} from "lucide-react";
 import { useState } from "react";
-import Assistant from "./CreateZone/Assistant";
-import Editor from "./CreateZone/Editor";
-import Launcher from "./CreateZone/Launcher";
-import Validator from "./CreateZone/Validator";
-import VisualStudio from "./CreateZone/VisualStudio";
-import OverView from "./Overview/OverView";
-import SemanticMemoryEngine from "./memory-zone/SemanticMemoryEngine";
-import GovernanceCenter from "./memory-zone/GovernanceCenterSimple";
-import PromptLibrary from "./memory-zone/PromptLibraryFixed";
-import SnippetManager from "./memory-zone/SnippetManager";
-import DriftInsightDashboard from "./memory-zone/DriftInsightDashboard";
-import SignalExportHub from "./public-zone/ExportHub";
-import IntegrationLayer from "./public-zone/Integration";
-import CLISDKPanel from "./public-zone/SDK";
-import SignalObjectProtocolViewer from "./public-zone/ProtocolViewer";
+import {
+  Bell,
+  Search,
+  User,
+  ChevronDown,
+  Settings,
+  Brain,
+  Send,
+  BarChart,
+} from "lucide-react";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [activeSidebarItem, setActiveSidebarItem] = useState("Overview");
-  const [createZone, setCreateZone] = useState<string | null>(null);
-  const [memoryZone, setMemoryZone] = useState<string | null>(null);
-  const [publicZone, setPublicZone] = useState<string | null>(null);
-  const [analytics, setAnalytics] = useState<string | null>(null);
-  const [adminTools, setAdminTools] = useState<string | null>(null);
-
-  const activeSidebar = (item: string) => {
-    setActiveSidebarItem(item);
-    if (item === "Create Zone") {
-      setCreateZone("Launcher");
-    } else {
-      setCreateZone(null);
-    }
-
-    if (item === "Memory Zone") {
-      setMemoryZone("Semantic Engine");
-    } else {
-      setMemoryZone(null);
-    }
-
-    if (item === "Publish Zone") {
-      setPublicZone("Export Hub");
-    } else {
-      setPublicZone(null);
-    }
-
-    if (item === "Analytics") {
-      setAnalytics("Usage Dashboard");
-    } else {
-      setAnalytics(null);
-    }
-    if (item === "Admin Tools") {
-      setAdminTools("System Settings");
-    } else {
-      setAdminTools(null);
-    }
-  };
+  const navigate = useNavigate();
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -76,6 +26,7 @@ const Dashboard = () => {
         <nav className="p-2">
           <ul>
             {[
+              "Home",
               "Overview",
               "Create Zone",
               "Memory Zone",
@@ -90,8 +41,13 @@ const Dashboard = () => {
                       ? "bg-indigo-100 text-indigo-700"
                       : "hover:bg-gray-100"
                   }`}
-                  onClick={() => activeSidebar(item)}
+                  onClick={() => {
+                    setActiveSidebarItem(item);
+                    if (item === "Home") navigate("/dashboard");
+                    if (item === "Overview") navigate("/dashboard/overview");
+                  }}
                 >
+                  {item === "Home" && <BarChart size={18} className="mr-2" />}
                   {item === "Overview" && (
                     <BarChart size={18} className="mr-2" />
                   )}
@@ -117,54 +73,95 @@ const Dashboard = () => {
                   <ul className="ml-6 mt-1">
                     {item === "Create Zone" &&
                       [
-                        "Launcher",
-                        "Editor",
-                        "Validator",
-                        "Visual Studio",
-                        "Assistant",
+                        {
+                          title: "Launcher",
+                          path: "/createzone/launcher",
+                        },
+                        {
+                          title: "Editor",
+                          path: "/createzone/editor",
+                        },
+                        {
+                          title: "Visual Studio",
+                          path: "/createzone/visualstudio",
+                        },
+                        {
+                          title: "Validator",
+                          path: "/createzone/validator",
+                        },
+                        { title: "Assistant", path: "/createzone/assistant" },
                       ].map((subItem) => (
-                        <li key={subItem} className="mb-1">
+                        <li key={subItem.title} className="mb-1">
                           <button
                             className="text-sm p-1 hover:text-indigo-700 w-full text-left"
-                            onClick={() => setCreateZone(subItem)}
+                            onClick={() =>
+                              navigate(`/dashboard${subItem.path}`)
+                            }
                           >
-                            {subItem}
+                            {subItem.title}
                           </button>
                         </li>
                       ))}
 
                     {item === "Memory Zone" &&
                       [
-                        "Semantic Engine",
-                        "Governance",
-                        "Prompts",
-                        "Snippets",
-                        "Drift",
+                        {
+                          title: "Semantic Engine",
+                          path: "/memoryzone/semanticengine",
+                        },
+                        {
+                          title: "Governance",
+                          path: "/memoryzone/governance",
+                        },
+                        {
+                          title: "Prompts",
+                          path: "/memoryzone/prompts",
+                        },
+                        {
+                          title: "Snippets",
+                          path: "/memoryzone/snippets",
+                        },
+                        { title: "Drift", path: "/memoryzone/drift" },
                       ].map((subItem) => (
-                        <li key={subItem} className="mb-1">
+                        <li key={subItem.title} className="mb-1">
                           <button
                             className="text-sm p-1 hover:text-indigo-700 w-full text-left"
-                            onClick={() => setMemoryZone(subItem)}
+                            onClick={() =>
+                              navigate(`/dashboard${subItem.path}`)
+                            }
                           >
-                            {subItem}
+                            {subItem.title}
                           </button>
                         </li>
                       ))}
 
                     {item === "Publish Zone" &&
                       [
-                        "Export Hub",
-                        "Integration",
-                        "CLI/SDK",
-                        "Protocol Viewer",
+                        {
+                          title: "Export Hub",
+                          path: "/publishzone/export",
+                        },
+                        {
+                          title: "Integration",
+                          path: "/publishzone/integration",
+                        },
+                        {
+                          title: "CLI/SDK",
+                          path: "/publishzone/cli",
+                        },
+                        {
+                          title: "Protocol Viewer",
+                          path: "/publishzone/protocol",
+                        },
                       ].map((subItem) => (
-                        <li key={subItem} className="mb-1">
-                          {adminTools === "Drift" && <DriftInsightDashboard />}
+                        <li key={subItem.title} className="mb-1">
                           <button
                             className="text-sm p-1 hover:text-indigo-700 w-full text-left"
-                            onClick={() => setPublicZone(subItem)}
+                            onClick={() =>
+                              navigate(`/dashboard${subItem.path}`)
+                            }
                           >
-                            {subItem}
+                            {subItem.title}
                           </button>
                         </li>
                       ))}
@@ -172,10 +169,7 @@ const Dashboard = () => {
                     {item === "Analytics" &&
                       ["Usage Dashboard", "Audit Trail"].map((subItem) => (
                         <li key={subItem} className="mb-1">
-                          <button
-                            className="text-sm p-1 hover:text-indigo-700 w-full text-left"
-                            onClick={() => setAnalytics(subItem)}
-                          >
+                          <button className="text-sm p-1 hover:text-indigo-700 w-full text-left">
                             {subItem}
                           </button>
                         </li>
@@ -189,10 +183,7 @@ const Dashboard = () => {
                         "Access Control",
                       ].map((subItem) => (
                         <li key={subItem} className="mb-1">
-                          <button
-                            className="text-sm p-1 hover:text-indigo-700 w-full text-left"
-                            onClick={() => setAdminTools(subItem)}
-                          >
+                          <button className="text-sm p-1 hover:text-indigo-700 w-full text-left">
                             {subItem}
                           </button>
                         </li>
@@ -204,74 +195,44 @@ const Dashboard = () => {
           </ul>
         </nav>
       </div>
+
+      {/* Main Content */}
       <div className="flex-1 overflow-auto">
-        <div>
-          {/* Header */}
-          <header className="bg-white p-4 flex items-center justify-between shadow-sm">
-            <div className="relative w-64">
-              <Search
-                size={18}
-                className="absolute left-2 top-2.5 text-gray-400"
-              />
-              <input
-                type="text"
-                placeholder="Search snippets, prompts, campaigns..."
-                className="pl-9 pr-4 py-2 w-full border rounded focus:outline-none focus:ring-1 focus:ring-indigo-500"
-              />
-            </div>
+        {/* Header */}
+        <header className="bg-white p-4 flex items-center justify-between shadow-sm">
+          <div className="relative w-64">
+            <Search
+              size={18}
+              className="absolute left-2 top-2.5 text-gray-400"
+            />
+            <input
+              type="text"
+              placeholder="Search snippets, prompts, campaigns..."
+              className="pl-9 pr-4 py-2 w-full border rounded focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            />
+          </div>
 
-            <div className="flex items-center space-x-4">
-              <button className="relative">
-                <Bell size={20} />
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                  3
-                </span>
-              </button>
+          <div className="flex items-center space-x-4">
+            <button className="relative">
+              <Bell size={20} />
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                3
+              </span>
+            </button>
 
-              <div className="flex items-center cursor-pointer">
-                <div className="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center text-white">
-                  <User size={16} />
-                </div>
-                <ChevronDown size={16} className="ml-1" />
+            <div className="flex items-center cursor-pointer">
+              <div className="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center text-white">
+                <User size={16} />
               </div>
+              <ChevronDown size={16} className="ml-1" />
             </div>
-          </header>
+          </div>
+        </header>
+
+        {/* Content */}
+        <div>
+          <Outlet />
         </div>
-        {createZone === null &&
-          memoryZone === null &&
-          publicZone === null &&
-          analytics === null &&
-          adminTools === null && <OverView />}
-        {createZone === "Launcher" && (
-          <Launcher setCreateZone={setCreateZone} />
-        )}
-        {createZone === "Editor" && <Editor setCreateZone={setCreateZone} />}
-        {createZone === "Validator" && (
-          <Validator setCreateZone={setCreateZone} />
-        )}
-        {createZone === "Visual Studio" && (
-          <VisualStudio setCreateZone={setCreateZone} />
-        )}
-        {createZone === "Assistant" && <Assistant />}
-        {/* MemoryZone */}
-        {memoryZone === "Semantic Engine" && <SemanticMemoryEngine />}
-        {memoryZone === "Governance" && <GovernanceCenter />}
-        {memoryZone === "Prompts" && <PromptLibrary />}
-        {memoryZone === "Snippets" && <SnippetManager />}
-        {memoryZone === "Drift" && <DriftInsightDashboard />}
-        {/* PublicZone */}
-        {publicZone === "Export Hub" && <SignalExportHub />}
-        {publicZone === "Integration" && <IntegrationLayer />}
-        {publicZone === "CLI/SDK" && <CLISDKPanel />}
-        {publicZone === "Protocol Viewer" && <SignalObjectProtocolViewer />} 
-        {/* Analytics*/}
-        {analytics === "Usage Dashboard" && <SemanticMemoryEngine />}
-        {analytics === "Audit Trail" && <GovernanceCenter />}
-        {/* Admin Tools*/}
-        {adminTools === "System Settings" && <SemanticMemoryEngine />}
-        {adminTools === "Team" && <GovernanceCenter />}
-        {adminTools === "AI Config" && <PromptLibrary />}
-        {adminTools === "Access Control" && <SnippetManager />}
       </div>
     </div>
   );

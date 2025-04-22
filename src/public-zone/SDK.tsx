@@ -21,7 +21,7 @@ const CLISDKPanel = () => {
     setGeneratedToken(newToken);
   };
   
-  const getCodeSnippet = (lang) => {
+  const getCodeSnippet = (lang: string) => {
     if (lang === 'javascript') {
       return `// Signal Studio SDK example
 import { SignalStudio } from '@signal-studio/sdk';
