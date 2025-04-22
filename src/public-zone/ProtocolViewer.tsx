@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronRight, Code, Download, ArrowLeftRight, Check, Info } from 'lucide-react';
 
+
 export type ErrorType = {
   message: string; // Error message
   code?: string; // Optional error code
@@ -28,6 +29,10 @@ export type DiffError = {
 
 const SignalObjectProtocolViewer = () => {
   const [selectedVersion, setSelectedVersion] = useState<'v1.0' | 'v1.1'>('v1.1');
+
+const SignalObjectProtocolViewer = () => {
+  const [selectedVersion, setSelectedVersion] = useState('v1.1');
+
   const [compareMode, setCompareMode] = useState(false);
   const [compareVersion, setCompareVersion] = useState('v1.0');
   const [expandedSections, setExpandedSections] = useState({
@@ -98,6 +103,7 @@ const SignalObjectProtocolViewer = () => {
   };
 
   const toggleSection = (section: keyof typeof expandedSections) => {
+
     setExpandedSections(prev => ({
       ...prev,
       [section]: !prev[section]
@@ -109,6 +115,7 @@ const SignalObjectProtocolViewer = () => {
   };
 
   const formatJSON = (obj: any, level: number = 0): string => {
+
     const indent = '  '.repeat(level);
     if (obj === null) return 'null';
     if (typeof obj !== 'object') {
@@ -128,6 +135,7 @@ const SignalObjectProtocolViewer = () => {
 
   const getDiff = (p0: null, path = []) => {
     const obj1 = getNestedValue(protocolObjects[selectedVersion as 'v1.0' | 'v1.1'], path);
+
     const obj2 = getNestedValue(protocolObjects[compareVersion], path);
     
     if (typeof obj1 === 'object' && obj1 !== null && typeof obj2 === 'object' && obj2 !== null) {
@@ -146,11 +154,13 @@ const SignalObjectProtocolViewer = () => {
     };
   };
 
+
   const getNestedValue = (obj: { object_id: string; creator: string; created_at: string; metadata: { campaign: string; type: string; locale: string; tone: string; }; content: { subject: string; body: string; cta: { text: string; url: string; }; }; tags: string[]; version_info: { version: string; status: string; last_updated: string; updated_by: string; }; } | { object_id: string; creator: string; created_at: string; metadata: { campaign: string; type: string; locale: string; tone: string; }; content: { subject: string; body: string; cta: { text: string; url: string; }; }; tags: string[]; version_info: { version: string; status: string; last_updated: string; updated_by: string; approval_info: { approved_by: string; approved_at: string; }; }; }, path: any[]) => {
     return path.reduce((prev, curr) => prev && prev[curr], obj);
   };
 
   const renderJSONTree = (obj: any[] | { campaign: string; type: string; locale: string; tone: string; } | { subject: string; body: string; cta: { text: string; url: string; }; } | { version: string; status: string; last_updated: string; updated_by: string; } | null, path = [], level = 0) => {
+
     if (obj === null || typeof obj !== 'object') {
       const value = typeof obj === 'string' ? `"${obj}"` : String(obj);
       

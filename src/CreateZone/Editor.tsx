@@ -19,7 +19,7 @@ import { useState } from "react";
 
 type FeedbackCategory = "tone" | "structure" | "brand";
 
-const Editor = () => {
+const Editor = ({setCreateZone}:any) => {
   const [content, setContent] = useState(`# Welcome to Signal Studio
 
 Thank you for joining our platform. We're excited to have you on board!
@@ -99,7 +99,10 @@ If you have any questions, our support team is here to help.`);
           <button className="p-2 text-gray-500 hover:text-gray-700 rounded">
             <Settings size={18} />
           </button>
-          <button className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 flex items-center">
+          <button
+            className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 flex items-center"
+            onClick={() => setCreateZone("Validator")}
+          >
             <Send size={16} className="mr-1.5" />
             Send for Review
           </button>

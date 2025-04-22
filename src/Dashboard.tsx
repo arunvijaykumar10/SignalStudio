@@ -35,15 +35,15 @@ const Dashboard = () => {
 
   const activeSidebar = (item: string) => {
     setActiveSidebarItem(item);
-    if (item !== "Create Zone") setCreateZone(null);
+    if (item === "Create Zone") setCreateZone("Launcher");
 
-    if (item !== "Memory Zone") setMemoryZone(null);
+    if (item === "Memory Zone") setMemoryZone("Semantic Engine");
 
-    if (item !== "Public Zone") setPublicZone(null);
+    if (item === "Public Zone") setPublicZone("Export Hub");
 
-    if (item !== "Analytics") setAnalytics(null);
+    if (item === "Analytics") setAnalytics("Usage Dashboard");
 
-    if (item !== "Admin Tools") setAdminTools(null);
+    if (item === "Admin Tools") setAdminTools("System Settings");
   };
 
   return (
@@ -218,16 +218,17 @@ const Dashboard = () => {
             </div>
           </header>
         </div>
-        {/* CreateZone */}
-        {createZone === null &&
-          memoryZone === null &&
-          publicZone === null &&
-          analytics === null &&
-          adminTools === null && <OverView />}
-        {createZone === "Launcher" && <Launcher />}
-        {createZone === "Editor" && <Editor />}
-        {createZone === "Visual Studio" && <VisualStudio />}
-        {createZone === "Validator" && <Validator />}
+        {createZone === null && <OverView />}
+        {createZone === "Launcher" && (
+          <Launcher setCreateZone={setCreateZone} />
+        )}
+        {createZone === "Editor" && <Editor setCreateZone={setCreateZone} />}
+        {createZone === "Validator" && (
+          <Validator setCreateZone={setCreateZone} />
+        )}
+        {createZone === "Visual Studio" && (
+          <VisualStudio setCreateZone={setCreateZone} />
+        )}
         {createZone === "Assistant" && <Assistant />}
         {/* MemoryZone */}
         {memoryZone === "Semantic Engine" && <SemanticMemoryEngine />}
