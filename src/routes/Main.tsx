@@ -21,7 +21,7 @@ import SignalExportHub from "../public-zone/ExportHub";
 import IntegrationLayer from "../public-zone/Integration";
 import CLISDKPanel from "../public-zone/SDK";
 import SignalObjectProtocolViewer from "../public-zone/ProtocolViewer";
-import TeamManagement from "../admin-tools/TeamManage";
+import TeamManagement from "../admin-tools/team/TeamManagement";
 
 const Main = () => {
   return (

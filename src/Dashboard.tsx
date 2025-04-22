@@ -183,7 +183,7 @@ const Dashboard = () => {
                           path: "/admintools/systemsettings",
                         },
                         {
-                          title: "Team",
+                          title: "Team Management",
                           path: "/admintools/team",
                         },
                         {
