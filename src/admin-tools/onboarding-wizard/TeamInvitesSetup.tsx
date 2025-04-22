@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   ChevronRight,
-  ChevronLeft,
   Check,
   Plus,
   User,
   Users,
-  X,
   Mail,
-  UserPlus,
   Trash2,
   AlertCircle,
 } from "lucide-react";
@@ -42,7 +39,7 @@ const TeamInvitesSetup = () => {
   };
 
   // Remove an invite row
-  const removeInviteRow = (index) => {
+  const removeInviteRow = (index: number) => {
     const newEmails = [...inviteEmails];
     const newRoles = [...selectedRoles];
 
@@ -54,14 +51,14 @@ const TeamInvitesSetup = () => {
   };
 
   // Update email at specific index
-  const updateEmail = (index, value) => {
+  const updateEmail = (index: number, value: string) => {
     const newEmails = [...inviteEmails];
     newEmails[index] = value;
     setInviteEmails(newEmails);
   };
 
   // Update role at specific index
-  const updateRole = (index, value) => {
+  const updateRole = (index: number, value: string) => {
     const newRoles = [...selectedRoles];
     newRoles[index] = value;
     setSelectedRoles(newRoles);
