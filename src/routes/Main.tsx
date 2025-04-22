@@ -21,6 +21,7 @@ import SignalExportHub from "../public-zone/ExportHub";
 import IntegrationLayer from "../public-zone/Integration";
 import CLISDKPanel from "../public-zone/SDK";
 import SignalObjectProtocolViewer from "../public-zone/ProtocolViewer";
+import UserProfileWireframe from "../user-settings/UserSettings";
 
 const Main = () => {
   return (
@@ -34,13 +35,10 @@ const Main = () => {
           <Route path="overview" element={<SystemOverview />} />
           {/* Creatzone */}
           <Route path="createzone/launcher" element={<Launcher />} />
-          <Route path="createzone/editor" element={<Editor/>} />
-          <Route
-            path="createzone/visualstudio"
-            element={<VisualStudio />}
-          />
-          <Route path="createzone/validator" element={<Validator/>} />
-          <Route path="createzone/assistant" element={<Assistant/>} />
+          <Route path="createzone/editor" element={<Editor />} />
+          <Route path="createzone/visualstudio" element={<VisualStudio />} />
+          <Route path="createzone/validator" element={<Validator />} />
+          <Route path="createzone/assistant" element={<Assistant />} />
           {/* Memoryzone */}
           <Route
             path="memoryzone/semanticengine"
@@ -51,13 +49,17 @@ const Main = () => {
           <Route path="memoryzone/snippets" element={<SnippetManager />} />
           <Route path="memoryzone/drift" element={<DriftInsightDashboard />} />
           {/* PubliceZone */}
-          <Route path="publishzone/export" element={<SignalExportHub/>} />
+          <Route path="publishzone/export" element={<SignalExportHub />} />
           <Route
             path="publishzone/integration"
             element={<IntegrationLayer />}
           />
-          <Route path="publishzone/cli" element={<CLISDKPanel/>} />
-          <Route path="publishzone/protocol" element={<SignalObjectProtocolViewer/>} />
+          <Route path="publishzone/cli" element={<CLISDKPanel />} />
+          <Route
+            path="publishzone/protocol"
+            element={<SignalObjectProtocolViewer />}
+          />
+          <Route path="settings" element={<UserProfileWireframe />} />
         </Route>
       </Routes>
     </Router>

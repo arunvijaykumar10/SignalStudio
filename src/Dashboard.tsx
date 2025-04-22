@@ -8,6 +8,7 @@ import {
   Brain,
   Send,
   BarChart,
+  Home,
 } from "lucide-react";
 import { Outlet, useNavigate } from "react-router-dom";
 
@@ -47,7 +48,7 @@ const Dashboard = () => {
                     if (item === "Overview") navigate("/dashboard/overview");
                   }}
                 >
-                  {item === "Home" && <BarChart size={18} className="mr-2" />}
+                  {item === "Home" && <Home size={18} className="mr-2" />}
                   {item === "Overview" && (
                     <BarChart size={18} className="mr-2" />
                   )}
@@ -220,7 +221,10 @@ const Dashboard = () => {
               </span>
             </button>
 
-            <div className="flex items-center cursor-pointer">
+            <div
+              className="flex items-center cursor-pointer"
+              onClick={() => navigate("settings")}
+            >
               <div className="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center text-white">
                 <User size={16} />
               </div>
