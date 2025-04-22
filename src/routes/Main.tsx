@@ -4,23 +4,33 @@ import {
   BrowserRouter as Router,
   Routes,
 } from "react-router-dom";
+import AIConfig from "../admin-tools/aiconfig/AiCofig";
+import AiConfigure from "../admin-tools/aiconfig/AiConfigure";
+import AiSettings from "../admin-tools/aiconfig/AiSettings";
+import Assistant from "../CreateZone/Assistant";
+import Editor from "../CreateZone/Editor";
+import Launcher from "../CreateZone/Launcher";
+import Validator from "../CreateZone/Validator";
+import VisualStudio from "../CreateZone/VisualStudio";
 import Dashboard from "../Dashboard";
-import SemanticMemoryEngine from "../memory-zone/SemanticMemoryEngine";
-import GovernanceCenter from "../memory-zone/GovernanceCenterSimple";
-import PromptLibrary from "../memory-zone/PromptLibraryFixed";
-import SnippetManager from "../memory-zone/SnippetManager";
 import DashboardContent from "../DashboardContent";
 import DriftInsightDashboard from "../memory-zone/DriftInsightDashboard";
-import SystemOverview from "../SystemOverview";
-import Launcher from "../CreateZone/Launcher";
-import Editor from "../CreateZone/Editor";
-import VisualStudio from "../CreateZone/VisualStudio";
-import Validator from "../CreateZone/Validator";
-import Assistant from "../CreateZone/Assistant";
+import GovernanceCenter from "../memory-zone/GovernanceCenterSimple";
+import PromptLibrary from "../memory-zone/PromptLibraryFixed";
+import SemanticMemoryEngine from "../memory-zone/SemanticMemoryEngine";
+import SnippetManager from "../memory-zone/SnippetManager";
 import SignalExportHub from "../public-zone/ExportHub";
 import IntegrationLayer from "../public-zone/Integration";
-import CLISDKPanel from "../public-zone/SDK";
 import SignalObjectProtocolViewer from "../public-zone/ProtocolViewer";
+import TeamManagement from "../admin-tools/team/TeamManagement";
+import CLISDKPanel from "../public-zone/SDK";
+import SystemOverview from "../SystemOverview";
+import RoleBasedAccessControl from "../admin-tools/access-control/RoleBasedAccessControl";
+import MemoryManagement from "../admin-tools/memoryManagement/MemoryManagement";
+import MemoryOptimizationSettings from "../admin-tools/memoryManagement/memory-optimization-settings";
+import ManualMemoryCleanup from "../admin-tools/memoryManagement/manual-memory-cleanup";
+import ArchivedMemoryVault from "../admin-tools/memoryManagement/archived-memory-vault";
+import DataRetentionExpiry from "../admin-tools/memoryManagement/data-retention-wireframe";
 
 const Main = () => {
   return (
@@ -34,13 +44,10 @@ const Main = () => {
           <Route path="overview" element={<SystemOverview />} />
           {/* Creatzone */}
           <Route path="createzone/launcher" element={<Launcher />} />
-          <Route path="createzone/editor" element={<Editor/>} />
-          <Route
-            path="createzone/visualstudio"
-            element={<VisualStudio />}
-          />
-          <Route path="createzone/validator" element={<Validator/>} />
-          <Route path="createzone/assistant" element={<Assistant/>} />
+          <Route path="createzone/editor" element={<Editor />} />
+          <Route path="createzone/visualstudio" element={<VisualStudio />} />
+          <Route path="createzone/validator" element={<Validator />} />
+          <Route path="createzone/assistant" element={<Assistant />} />
           {/* Memoryzone */}
           <Route
             path="memoryzone/semanticengine"
@@ -51,13 +58,49 @@ const Main = () => {
           <Route path="memoryzone/snippets" element={<SnippetManager />} />
           <Route path="memoryzone/drift" element={<DriftInsightDashboard />} />
           {/* PubliceZone */}
-          <Route path="publishzone/export" element={<SignalExportHub/>} />
+          <Route path="publishzone/export" element={<SignalExportHub />} />
           <Route
             path="publishzone/integration"
             element={<IntegrationLayer />}
           />
-          <Route path="publishzone/cli" element={<CLISDKPanel/>} />
-          <Route path="publishzone/protocol" element={<SignalObjectProtocolViewer/>} />
+          <Route path="publishzone/cli" element={<CLISDKPanel />} />
+          <Route
+            path="publishzone/protocol"
+            element={<SignalObjectProtocolViewer />}
+          />
+          {/* Analytics */}
+          {/* Admin Tools */}
+          <Route
+            path="admintools/memorymanageement"
+            element={<MemoryManagement />}
+          />
+          <Route
+            path="admintools/memorymanageement/1"
+            element={<MemoryOptimizationSettings />}
+          />
+          <Route
+            path="admintools/memorymanageement/2"
+            element={<ManualMemoryCleanup />}
+          />
+          <Route
+            path="admintools/memorymanageement/3"
+            element={<DataRetentionExpiry />}
+          />
+          <Route
+            path="admintools/memorymanageement/4"
+            element={<ArchivedMemoryVault />}
+          />
+          <Route path="admintools/team" element={<TeamManagement />} />
+          <Route path="admintools/aiconfig" element={<AIConfig />} />
+          <Route path="admintools/aiconfig/settings" element={<AiSettings />} />
+          <Route
+            path="admintools/aiconfig/configure"
+            element={<AiConfigure />}
+          />
+          <Route
+            path="admintools/access"
+            element={<RoleBasedAccessControl />}
+          />
         </Route>
       </Routes>
     </Router>
