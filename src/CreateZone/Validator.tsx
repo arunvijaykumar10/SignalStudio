@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Validator = ({ setCreateZone }: any) => {
+const Validator = () => {
   // Mock validation scores based on wireframe specs
   const [validationScore] = useState({
     tone: 86,
@@ -10,6 +11,7 @@ const Validator = ({ setCreateZone }: any) => {
   });
 
   const [activeIssue, setActiveIssue] = useState<any>(null);
+  const navigate = useNavigate();
 
   // Mock validation issues
   const issues = [
@@ -66,7 +68,7 @@ const Validator = ({ setCreateZone }: any) => {
           </button>
           <button
             className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-            onClick={() => setCreateZone("Visual Studio")}
+            onClick={() => navigate("/dashboard/createzone/assistant")}
           >
             Approve
           </button>

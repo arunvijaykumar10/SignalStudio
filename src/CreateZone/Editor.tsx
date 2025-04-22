@@ -16,10 +16,11 @@ import {
   Zap,
 } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type FeedbackCategory = "tone" | "structure" | "brand";
 
-const Editor = ({setCreateZone}:any) => {
+const Editor = () => {
   const [content, setContent] = useState(`# Welcome to Signal Studio
 
 Thank you for joining our platform. We're excited to have you on board!
@@ -33,6 +34,8 @@ Here are some quick tips to help you get started:
 3. Connect your first integration
 
 If you have any questions, our support team is here to help.`);
+
+  const navigate = useNavigate();
 
   const [toneScore] = useState(83);
   const [activeFeedback, setActiveFeedback] = useState("tone");
@@ -101,7 +104,7 @@ If you have any questions, our support team is here to help.`);
           </button>
           <button
             className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 flex items-center"
-            onClick={() => setCreateZone("Validator")}
+            onClick={() => navigate("/dashboard/createzone/visualstudio")}
           >
             <Send size={16} className="mr-1.5" />
             Send for Review

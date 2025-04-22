@@ -8,6 +8,7 @@ import {
   Brain,
   Send,
   BarChart,
+  Home,
 } from "lucide-react";
 import { Outlet, useNavigate } from "react-router-dom";
 
@@ -47,7 +48,7 @@ const Dashboard = () => {
                     if (item === "Overview") navigate("/dashboard/overview");
                   }}
                 >
-                  {item === "Home" && <BarChart size={18} className="mr-2" />}
+                  {item === "Home" && <Home size={18} className="mr-2" />}
                   {item === "Overview" && (
                     <BarChart size={18} className="mr-2" />
                   )}
