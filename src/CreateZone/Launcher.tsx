@@ -1,5 +1,6 @@
 import { Clock, Star, User, Zap } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Launcher = () => {
   const [selectedPrompt, setSelectedPrompt] = useState<{
@@ -9,6 +10,7 @@ const Launcher = () => {
     description: string;
     recent: boolean;
   } | null>(null);
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedPersona, setSelectedPersona] = useState<{
     id: number;
@@ -276,6 +278,7 @@ const Launcher = () => {
               // }`}
               // disabled={!selectedPrompt || !selectedPersona}
               className={`w-full py-3 rounded-lg font-medium ${"bg-indigo-600 text-white hover:bg-indigo-700"}`}
+              onClick={() => navigate("/dashboard/createzone/editor")}
             >
               Generate Draft
             </button>

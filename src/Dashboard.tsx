@@ -178,14 +178,31 @@ const Dashboard = () => {
 
                     {item === "Admin Tools" &&
                       [
-                        "System Settings",
-                        "Team",
-                        "AI Config",
-                        "Access Control",
+                        {
+                          title: "Memory Management",
+                          path: "/admintools/memorymanageement",
+                        },
+                        {
+                          title: "Team Management",
+                          path: "/admintools/team",
+                        },
+                        {
+                          title: "AI Config",
+                          path: "/admintools/aiconfig",
+                        },
+                        {
+                          title: "Access Control",
+                          path: "/admintools/access",
+                        },
                       ].map((subItem) => (
-                        <li key={subItem} className="mb-1">
-                          <button className="text-sm p-1 hover:text-indigo-700 w-full text-left">
-                            {subItem}
+                        <li key={subItem.title} className="mb-1">
+                          <button
+                            className="text-sm p-1 hover:text-indigo-700 w-full text-left"
+                            onClick={() =>
+                              navigate(`/dashboard${subItem.path}`)
+                            }
+                          >
+                            {subItem.title}
                           </button>
                         </li>
                       ))}
