@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Validator = () => {
+const Validator = ({ setCreateZone }: any) => {
   // Mock validation scores based on wireframe specs
   const [validationScore] = useState({
     tone: 86,
@@ -64,7 +64,10 @@ const Validator = () => {
           <button className="px-4 py-2 border border-amber-300 bg-amber-50 text-amber-700 rounded hover:bg-amber-100">
             Escalate
           </button>
-          <button className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+          <button
+            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+            onClick={() => setCreateZone("Visual Studio")}
+          >
             Approve
           </button>
         </div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Download, RefreshCw } from "lucide-react";
 
-const VisualStudio = () => {
+const VisualStudio = ({ setCreateZone }: any) => {
   const [prompt, setPrompt] = useState("");
   const [selectedStyle, setSelectedStyle] = useState("Corporate");
 
@@ -176,7 +176,10 @@ const VisualStudio = () => {
                     <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded hover:bg-gray-50 text-sm mr-2">
                       Download All
                     </button>
-                    <button className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 text-sm">
+                    <button
+                      className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 text-sm"
+                      onClick={() => setCreateZone("Assistant")}
+                    >
                       Export Selected
                     </button>
                   </div>
