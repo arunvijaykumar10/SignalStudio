@@ -121,22 +121,22 @@ const DriftInsightDashboard = () => {
   const [alertFilter, setAlertFilter] = useState("all");
 
   // Format date for display
-  const formatDate = (dateString) => {
-    const options = { month: "short", day: "numeric" };
+  const formatDate = (dateString: string | number | Date) => {
+    const options: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
   // Format the tooltip date for the charts
-  const formatTooltipDate = (dateString) => {
-    const options = { year: "numeric", month: "short", day: "numeric" };
+  const formatTooltipDate = (dateString: string | number | Date) => {
+    const options: Intl.DateTimeFormatOptions = { year: "numeric", month: "short", day: "numeric" };
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
   // Format the alert time
-  const formatAlertTime = (dateString) => {
+  const formatAlertTime = (dateString: string | number | Date) => {
     const date = new Date(dateString);
     const now = new Date();
-    const diffDays = Math.floor((now - date) / (1000 * 60 * 60 * 24));
+    const diffDays = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
 
     if (diffDays === 0) {
       return "Today";
@@ -153,7 +153,7 @@ const DriftInsightDashboard = () => {
   };
 
   // Get color for alert severity
-  const getSeverityColor = (severity) => {
+  const getSeverityColor = (severity: string) => {
     switch (severity) {
       case "high":
         return "bg-red-100 text-red-800";
@@ -310,11 +310,11 @@ const DriftInsightDashboard = () => {
                     <YAxis
                       domain={[60, 100]}
                       stroke="#9ca3af"
-                      tickFormatter={(value) => `${value}`}
+                      tickFormatter={(value: any) => `${value}`}
                     />
                     <Tooltip
-                      labelFormatter={(value) => formatTooltipDate(value)}
-                      formatter={(value) => [
+                      labelFormatter={(value: string | number | Date) => formatTooltipDate(value)}
+                      formatter={(value: number) => [
                         `${value}`,
                         value === toneData[0].baseline
                           ? "Brand Baseline"
@@ -389,14 +389,14 @@ const DriftInsightDashboard = () => {
                     />
                     <YAxis stroke="#9ca3af" />
                     <Tooltip
-                      labelFormatter={(value) => formatTooltipDate(value)}
-                      formatter={(value, name) => {
+                      labelFormatter={(value: string | number | Date) => formatTooltipDate(value)}
+                      formatter={(value: any, name: string | number) => {
                         const displayName = {
                           factual: "Factual Error",
                           citation: "Citation Error",
                           relevance: "Relevance Error",
                         };
-                        return [value, displayName[name] || name];
+                        return [value, displayName[name as keyof typeof displayName] || name];
                       }}
                     />
                     <Legend />
