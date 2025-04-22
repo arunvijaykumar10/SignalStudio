@@ -23,7 +23,7 @@ import DriftInsightDashboard from "./memory-zone/DriftInsightDashboard";
 import SignalExportHub from "./public-zone/ExportHub";
 import IntegrationLayer from "./public-zone/Integration";
 import CLISDKPanel from "./public-zone/SDK";
-// import SignalObjectProtocolViewer from "./public-zone/ProtocolViewer";
+import SignalObjectProtocolViewer from "./public-zone/ProtocolViewer";
 
 const Dashboard = () => {
   const [activeSidebarItem, setActiveSidebarItem] = useState("Overview");
@@ -263,7 +263,7 @@ const Dashboard = () => {
         {publicZone === "Export Hub" && <SignalExportHub />}
         {publicZone === "Integration" && <IntegrationLayer />}
         {publicZone === "CLI/SDK" && <CLISDKPanel />}
-        {/* {publicZone === "Protocol Viewer" && <SignalObjectProtocolViewer />} */}
+        {publicZone === "Protocol Viewer" && <SignalObjectProtocolViewer />} 
         {/* Analytics*/}
         {analytics === "Usage Dashboard" && <SemanticMemoryEngine />}
         {analytics === "Audit Trail" && <GovernanceCenter />}
