@@ -15,14 +15,31 @@ import Launcher from "./CreateZone/Launcher";
 import Validator from "./CreateZone/Validator";
 import VisualStudio from "./CreateZone/VisualStudio";
 import OverView from "./Overview/OverView";
+import SemanticMemoryEngine from "./memory-zone/SemanticMemoryEngine";
+import GovernanceCenter from "./memory-zone/GovernanceCenterSimple";
+import PromptLibrary from "./memory-zone/PromptLibraryFixed";
+import SnippetManager from "./memory-zone/SnippetManager";
+import DriftInsightDashboard from "./memory-zone/DriftInsightDashboard";
 
 const Dashboard = () => {
   const [activeSidebarItem, setActiveSidebarItem] = useState("Overview");
   const [createZone, setCreateZone] = useState<string | null>(null);
+  const [memoryZone, setMemoryZone] = useState<string | null>(null);
+  const [publicZone, setPublicZone] = useState<string | null>(null);
+  const [analytics, setAnalytics] = useState<string | null>(null);
+  const [adminTools, setAdminTools] = useState<string | null>(null);
 
   const activeSidebar = (item: string) => {
     setActiveSidebarItem(item);
     if (item !== "Create Zone") setCreateZone(null);
+
+    if (item !== "Memory Zone") setMemoryZone(null);
+
+    if (item !== "Public Zone") setPublicZone(null);
+
+    if (item !== "Analytics") setAnalytics(null);
+
+    if (item !== "Admin Tools") setAdminTools(null);
   };
 
   return (
@@ -102,7 +119,10 @@ const Dashboard = () => {
                         "Drift",
                       ].map((subItem) => (
                         <li key={subItem} className="mb-1">
-                          <button className="text-sm p-1 hover:text-indigo-700 w-full text-left">
+                          <button
+                            className="text-sm p-1 hover:text-indigo-700 w-full text-left"
+                            onClick={() => setMemoryZone(subItem)}
+                          >
                             {subItem}
                           </button>
                         </li>
@@ -116,7 +136,11 @@ const Dashboard = () => {
                         "Protocol Viewer",
                       ].map((subItem) => (
                         <li key={subItem} className="mb-1">
-                          <button className="text-sm p-1 hover:text-indigo-700 w-full text-left">
+                          {adminTools === "Drift" && <DriftInsightDashboard />}
+                          <button
+                            className="text-sm p-1 hover:text-indigo-700 w-full text-left"
+                            onClick={() => setPublicZone(subItem)}
+                          >
                             {subItem}
                           </button>
                         </li>
@@ -125,7 +149,10 @@ const Dashboard = () => {
                     {item === "Analytics" &&
                       ["Usage Dashboard", "Audit Trail"].map((subItem) => (
                         <li key={subItem} className="mb-1">
-                          <button className="text-sm p-1 hover:text-indigo-700 w-full text-left">
+                          <button
+                            className="text-sm p-1 hover:text-indigo-700 w-full text-left"
+                            onClick={() => setAnalytics(subItem)}
+                          >
                             {subItem}
                           </button>
                         </li>
@@ -139,7 +166,10 @@ const Dashboard = () => {
                         "Access Control",
                       ].map((subItem) => (
                         <li key={subItem} className="mb-1">
-                          <button className="text-sm p-1 hover:text-indigo-700 w-full text-left">
+                          <button
+                            className="text-sm p-1 hover:text-indigo-700 w-full text-left"
+                            onClick={() => setAdminTools(subItem)}
+                          >
                             {subItem}
                           </button>
                         </li>
@@ -184,12 +214,36 @@ const Dashboard = () => {
             </div>
           </header>
         </div>
-        {createZone === null && <OverView />}
+        {/* CreateZone */}
+        {createZone === null &&
+          memoryZone === null &&
+          publicZone === null &&
+          analytics === null &&
+          adminTools === null && <OverView />}
         {createZone === "Launcher" && <Launcher />}
         {createZone === "Editor" && <Editor />}
         {createZone === "Visual Studio" && <VisualStudio />}
         {createZone === "Validator" && <Validator />}
         {createZone === "Assistant" && <Assistant />}
+        {/* MemoryZone */}
+        {memoryZone === "Semantic Engine" && <SemanticMemoryEngine />}
+        {memoryZone === "Governance" && <GovernanceCenter />}
+        {memoryZone === "Prompts" && <PromptLibrary />}
+        {memoryZone === "Snippets" && <SnippetManager />}
+        {memoryZone === "Drift" && <DriftInsightDashboard />}
+        {/* PublicZone */}
+        {publicZone === "Export Hub" && <SemanticMemoryEngine />}
+        {publicZone === "Integration" && <GovernanceCenter />}
+        {publicZone === "CLI/SDK" && <PromptLibrary />}
+        {publicZone === "Protocol Viewer" && <SnippetManager />}
+        {/* Analytics*/}
+        {analytics === "Usage Dashboard" && <SemanticMemoryEngine />}
+        {analytics === "Audit Trail" && <GovernanceCenter />}
+        {/* Admin Tools*/}
+        {adminTools === "System Settings" && <SemanticMemoryEngine />}
+        {adminTools === "Team" && <GovernanceCenter />}
+        {adminTools === "AI Config" && <PromptLibrary />}
+        {adminTools === "Access Control" && <SnippetManager />}
       </div>
     </div>
   );
