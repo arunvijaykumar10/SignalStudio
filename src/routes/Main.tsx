@@ -7,7 +7,6 @@ import {
 import AIConfig from "../admin-tools/aiconfig/AiCofig";
 import AiConfigure from "../admin-tools/aiconfig/AiConfigure";
 import AiSettings from "../admin-tools/aiconfig/AiSettings";
-import TeamManagement from "../admin-tools/TeamManage";
 import Assistant from "../CreateZone/Assistant";
 import Editor from "../CreateZone/Editor";
 import Launcher from "../CreateZone/Launcher";
@@ -23,6 +22,7 @@ import SnippetManager from "../memory-zone/SnippetManager";
 import SignalExportHub from "../public-zone/ExportHub";
 import IntegrationLayer from "../public-zone/Integration";
 import SignalObjectProtocolViewer from "../public-zone/ProtocolViewer";
+import TeamManagement from "../admin-tools/team/TeamManagement";
 import CLISDKPanel from "../public-zone/SDK";
 import SystemOverview from "../SystemOverview";
 
