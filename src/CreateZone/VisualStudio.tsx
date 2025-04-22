@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Download, RefreshCw } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-const VisualStudio = ({ setCreateZone }: any) => {
+const VisualStudio = () => {
   const [prompt, setPrompt] = useState("");
   const [selectedStyle, setSelectedStyle] = useState("Corporate");
+
+  const navigate = useNavigate();
 
   // Placeholder images for generated results
   // In a real implementation, these would be dynamically generated
@@ -178,7 +181,9 @@ const VisualStudio = ({ setCreateZone }: any) => {
                     </button>
                     <button
                       className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 text-sm"
-                      onClick={() => setCreateZone("Assistant")}
+                      onClick={() =>
+                        navigate("/dashboard/createzone/validator")
+                      }
                     >
                       Export Selected
                     </button>
