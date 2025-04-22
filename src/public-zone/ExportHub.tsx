@@ -10,11 +10,13 @@ const SignalExportHub = () => {
     compressImages: true
   });
   
-  const handleFormatChange = (format) => {
+  const handleFormatChange = (format: React.SetStateAction<string>) => {
     setSelectedFormat(format);
   };
   
-  const handleToggleOption = (option) => {
+  type ExportOptionKey = keyof typeof exportOptions;
+
+  const handleToggleOption = (option: ExportOptionKey) => {
     setExportOptions({
       ...exportOptions,
       [option]: !exportOptions[option]

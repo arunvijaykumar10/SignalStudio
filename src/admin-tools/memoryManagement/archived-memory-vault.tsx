@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import {
   ChevronDown,
   ChevronUp,
@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 
 const ArchivedMemoryVault = () => {
-  const [expandedSection, setExpandedSection] = useState("archive");
+  const [expandedSection, setExpandedSection] = useState<string | null>("archive");
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
   // Mock data for archived items
@@ -62,7 +62,7 @@ const ArchivedMemoryVault = () => {
     },
   ];
 
-  const toggleSection = (section: any) => {
+  const toggleSection = (section: string) => {
     setExpandedSection(expandedSection === section ? null : section);
   };
 

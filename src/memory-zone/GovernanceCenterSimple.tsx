@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { SetStateAction, useState } from "react";
 
 type ToneRule = {
   id: number;
@@ -39,7 +39,7 @@ type ApprovalWorkflow = {
 
 const GovernanceCenter = () => {
   const [activeTab, setActiveTab] = useState("toneRules");
-  const [selectedRule, setSelectedRule] = useState(null);
+  const [selectedRule, setSelectedRule] = useState<ToneRule | FallbackRule | ApprovalWorkflow | null>(null);
 
   // Sample tone rule data
   const toneRules: ToneRule[] = [
@@ -135,12 +135,12 @@ const GovernanceCenter = () => {
     },
   ];
 
-  const handleTabClick = (tab) => {
+  const handleTabClick = (tab: SetStateAction<string>) => {
     setActiveTab(tab);
     setSelectedRule(null);
   };
 
-  const handleRuleSelect = (rule) => {
+  const handleRuleSelect = (rule: SetStateAction<null>) => {
     setSelectedRule(rule);
   };
 
@@ -365,7 +365,7 @@ const GovernanceCenter = () => {
                 <div className="flex justify-between items-start">
                   <div>
                     <h2 className="text-xl font-semibold text-gray-800">
-                      {selectedRule.name}
+                      {"name" in selectedRule ? selectedRule.name : ""}
                     </h2>
                     <p className="text-gray-600 mt-1">
                       {activeTab === "toneRules"
