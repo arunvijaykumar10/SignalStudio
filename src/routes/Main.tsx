@@ -4,24 +4,27 @@ import {
   BrowserRouter as Router,
   Routes,
 } from "react-router-dom";
+import AIConfig from "../admin-tools/aiconfig/AiCofig";
+import AiConfigure from "../admin-tools/aiconfig/AiConfigure";
+import AiSettings from "../admin-tools/aiconfig/AiSettings";
+import TeamManagement from "../admin-tools/TeamManage";
+import Assistant from "../CreateZone/Assistant";
+import Editor from "../CreateZone/Editor";
+import Launcher from "../CreateZone/Launcher";
+import Validator from "../CreateZone/Validator";
+import VisualStudio from "../CreateZone/VisualStudio";
 import Dashboard from "../Dashboard";
-import SemanticMemoryEngine from "../memory-zone/SemanticMemoryEngine";
-import GovernanceCenter from "../memory-zone/GovernanceCenterSimple";
-import PromptLibrary from "../memory-zone/PromptLibraryFixed";
-import SnippetManager from "../memory-zone/SnippetManager";
 import DashboardContent from "../DashboardContent";
 import DriftInsightDashboard from "../memory-zone/DriftInsightDashboard";
-import SystemOverview from "../SystemOverview";
-import Launcher from "../CreateZone/Launcher";
-import Editor from "../CreateZone/Editor";
-import VisualStudio from "../CreateZone/VisualStudio";
-import Validator from "../CreateZone/Validator";
-import Assistant from "../CreateZone/Assistant";
+import GovernanceCenter from "../memory-zone/GovernanceCenterSimple";
+import PromptLibrary from "../memory-zone/PromptLibraryFixed";
+import SemanticMemoryEngine from "../memory-zone/SemanticMemoryEngine";
+import SnippetManager from "../memory-zone/SnippetManager";
 import SignalExportHub from "../public-zone/ExportHub";
 import IntegrationLayer from "../public-zone/Integration";
-import CLISDKPanel from "../public-zone/SDK";
 import SignalObjectProtocolViewer from "../public-zone/ProtocolViewer";
-import TeamManagement from "../admin-tools/TeamManage";
+import CLISDKPanel from "../public-zone/SDK";
+import SystemOverview from "../SystemOverview";
 
 const Main = () => {
   return (
@@ -60,14 +63,21 @@ const Main = () => {
             element={<SignalObjectProtocolViewer />}
           />
           {/* Analytics */}
-
           {/* Admin Tools */}
           <Route
-            path="admintools/systemsettings"
+            path="admintools/memorymanageement"
             element={<TeamManagement />}
           />
           <Route path="admintools/team" element={<TeamManagement />} />
-          <Route path="admintools/aiconfig" element={<TeamManagement />} />
+          <Route path="admintools/aiconfig" element={<AIConfig />} />
+          <Route
+            path="admintools/aiconfig/settings"
+            element={<AiSettings />}
+          />
+          <Route
+            path="admintools/aiconfig/configure"
+            element={<AiConfigure />}
+          />
           <Route path="admintools/access" element={<TeamManagement />} />
         </Route>
       </Routes>

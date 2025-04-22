@@ -179,8 +179,8 @@ const Dashboard = () => {
                     {item === "Admin Tools" &&
                       [
                         {
-                          title: "System Settings",
-                          path: "/admintools/systemsettings",
+                          title: "Memory Management",
+                          path: "/admintools/memorymanageement",
                         },
                         {
                           title: "Team",
