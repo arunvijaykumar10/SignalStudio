@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { Bell, Search, User, ChevronDown, Settings, Users, Brain, Book, Send, BarChart, Shield } from 'lucide-react';
+import { Route, Routes } from 'react-router-dom';
+import UserProfileWireframe from './pages/user-setting/UserSetings';
+import SignalExportHub from './pages/public-zone/ExportHub';
 
 const Dashboard = () => {
   const [activeSidebarItem, setActiveSidebarItem] = useState('Overview');
@@ -113,7 +116,7 @@ const Dashboard = () => {
           </ul>
         </nav>
       </div>
-      
+
       {/* Main Content */}
       <div className="flex-1 overflow-auto">
         {/* Header */}
