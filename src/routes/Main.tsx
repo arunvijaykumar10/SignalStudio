@@ -26,6 +26,12 @@ import TeamManagement from "../admin-tools/team/TeamManagement";
 import CLISDKPanel from "../public-zone/SDK";
 import SystemOverview from "../SystemOverview";
 import RoleBasedAccessControl from "../admin-tools/access-control/RoleBasedAccessControl";
+import BrandIdentitySetup from "../admin-tools/onboarding-wizard/BrandIdentitySetup";
+import ToneAndGovernanceSetup from "../admin-tools/onboarding-wizard/ToneAndGovernanceSetup";
+import PromptSnippetImport from "../admin-tools/onboarding-wizard/PromptSnippetImport";
+import IntegrationSetup from "../admin-tools/onboarding-wizard/IntegrationSetup";
+import TeamInvitesSetup from "../admin-tools/onboarding-wizard/TeamInvitesSetup";
+import WorkspaceSummary from "../admin-tools/onboarding-wizard/WorkspaceSummary";
 
 const Main = () => {
   return (
@@ -79,6 +85,30 @@ const Main = () => {
           <Route
             path="admintools/access"
             element={<RoleBasedAccessControl />}
+          />
+          <Route
+            path="admintools/access/wizard"
+            element={<BrandIdentitySetup />}
+          />
+          <Route
+            path="admintools/access/wizard/tone"
+            element={<ToneAndGovernanceSetup />}
+          />
+          <Route
+            path="admintools/access/wizard/prompt"
+            element={<PromptSnippetImport />}
+          />
+          <Route
+            path="admintools/access/wizard/intergations"
+            element={<IntegrationSetup />}
+          />
+          <Route
+            path="admintools/access/wizard/teaminvites"
+            element={<TeamInvitesSetup />}
+          />
+          <Route
+            path="admintools/access/wizard/summary"
+            element={<WorkspaceSummary />}
           />
         </Route>
       </Routes>

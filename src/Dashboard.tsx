@@ -8,6 +8,7 @@ import {
   Brain,
   Send,
   BarChart,
+  Wand2,
   Home,
 } from "lucide-react";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -231,6 +232,13 @@ const Dashboard = () => {
           </div>
 
           <div className="flex items-center space-x-4">
+            <button
+              className="flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition"
+              onClick={() => navigate("/dashboard/admintools/access/wizard")}
+            >
+              <Wand2 className="w-4 h-4 mr-2" />
+              Onboarding Wizard
+            </button>
             <button className="relative">
               <Bell size={20} />
               <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
