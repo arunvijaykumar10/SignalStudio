@@ -1,8 +1,38 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronRight, Code, Download, ArrowLeftRight, Check, Info } from 'lucide-react';
 
+
+export type ErrorType = {
+  message: string; // Error message
+  code?: string; // Optional error code
+  field?: string; // Optional field name related to the error
+  severity?: "low" | "medium" | "high"; // Severity level of the error
+  timestamp?: string; // Optional timestamp of when the error occurred
+};
+
+export type ValidationError = {
+  field: string; // The field that caused the validation error
+  message: string; // Error message for the field
+};
+
+export type APIError = {
+  statusCode: number; // HTTP status code
+  message: string; // Error message from the API
+  details?: string; // Optional additional details about the error
+};
+
+export type DiffError = {
+  key: string; // The key in the JSON object where the error occurred
+  message: string; // Error message related to the diff
+  type: "missing" | "mismatch" | "unexpected"; // Type of diff error
+};
+
+const SignalObjectProtocolViewer = () => {
+  const [selectedVersion, setSelectedVersion] = useState<'v1.0' | 'v1.1'>('v1.1');
+
 const SignalObjectProtocolViewer = () => {
   const [selectedVersion, setSelectedVersion] = useState('v1.1');
+
   const [compareMode, setCompareMode] = useState(false);
   const [compareVersion, setCompareVersion] = useState('v1.0');
   const [expandedSections, setExpandedSections] = useState({
@@ -72,7 +102,8 @@ const SignalObjectProtocolViewer = () => {
     }
   };
 
-  const toggleSection = (section) => {
+  const toggleSection = (section: keyof typeof expandedSections) => {
+
     setExpandedSections(prev => ({
       ...prev,
       [section]: !prev[section]
@@ -83,7 +114,8 @@ const SignalObjectProtocolViewer = () => {
     setCompareMode(!compareMode);
   };
 
-  const formatJSON = (obj, level = 0) => {
+  const formatJSON = (obj: any, level: number = 0): string => {
+
     const indent = '  '.repeat(level);
     if (obj === null) return 'null';
     if (typeof obj !== 'object') {
@@ -101,8 +133,9 @@ const SignalObjectProtocolViewer = () => {
     return `{\n${items}\n${indent}}`;
   };
 
-  const getDiff = (key, path = []) => {
-    const obj1 = getNestedValue(protocolObjects[selectedVersion], path);
+  const getDiff = (p0: null, path = []) => {
+    const obj1 = getNestedValue(protocolObjects[selectedVersion as 'v1.0' | 'v1.1'], path);
+
     const obj2 = getNestedValue(protocolObjects[compareVersion], path);
     
     if (typeof obj1 === 'object' && obj1 !== null && typeof obj2 === 'object' && obj2 !== null) {
@@ -121,11 +154,13 @@ const SignalObjectProtocolViewer = () => {
     };
   };
 
-  const getNestedValue = (obj, path) => {
+
+  const getNestedValue = (obj: { object_id: string; creator: string; created_at: string; metadata: { campaign: string; type: string; locale: string; tone: string; }; content: { subject: string; body: string; cta: { text: string; url: string; }; }; tags: string[]; version_info: { version: string; status: string; last_updated: string; updated_by: string; }; } | { object_id: string; creator: string; created_at: string; metadata: { campaign: string; type: string; locale: string; tone: string; }; content: { subject: string; body: string; cta: { text: string; url: string; }; }; tags: string[]; version_info: { version: string; status: string; last_updated: string; updated_by: string; approval_info: { approved_by: string; approved_at: string; }; }; }, path: any[]) => {
     return path.reduce((prev, curr) => prev && prev[curr], obj);
   };
 
-  const renderJSONTree = (obj, path = [], level = 0) => {
+  const renderJSONTree = (obj: any[] | { campaign: string; type: string; locale: string; tone: string; } | { subject: string; body: string; cta: { text: string; url: string; }; } | { version: string; status: string; last_updated: string; updated_by: string; } | null, path = [], level = 0) => {
+
     if (obj === null || typeof obj !== 'object') {
       const value = typeof obj === 'string' ? `"${obj}"` : String(obj);
       
@@ -149,11 +184,11 @@ const SignalObjectProtocolViewer = () => {
       <div className="ml-4">
         {keys.map((key) => {
           const newPath = [...path, key];
-          const value = obj[key];
+          const value = (obj as Record<string | number, any>)[key];
           const isObject = value !== null && typeof value === 'object';
           
           // For diff highlighting
-          const diffInfo = compareMode ? getDiff(key, newPath) : { changed: false };
+          const diffInfo = compareMode ? getDiff(null, newPath) : { changed: false };
           const rowClass = diffInfo.changed ? 'bg-yellow-100' : 
                           diffInfo.added ? 'bg-green-100' : 
                           diffInfo.removed ? 'bg-red-100' : '';
