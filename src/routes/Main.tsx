@@ -25,6 +25,7 @@ import SignalObjectProtocolViewer from "../public-zone/ProtocolViewer";
 import TeamManagement from "../admin-tools/team/TeamManagement";
 import CLISDKPanel from "../public-zone/SDK";
 import SystemOverview from "../SystemOverview";
+import RoleBasedAccessControl from "../admin-tools/access-control/RoleBasedAccessControl";
 
 const Main = () => {
   return (
@@ -70,15 +71,15 @@ const Main = () => {
           />
           <Route path="admintools/team" element={<TeamManagement />} />
           <Route path="admintools/aiconfig" element={<AIConfig />} />
-          <Route
-            path="admintools/aiconfig/settings"
-            element={<AiSettings />}
-          />
+          <Route path="admintools/aiconfig/settings" element={<AiSettings />} />
           <Route
             path="admintools/aiconfig/configure"
             element={<AiConfigure />}
           />
-          <Route path="admintools/access" element={<TeamManagement />} />
+          <Route
+            path="admintools/access"
+            element={<RoleBasedAccessControl />}
+          />
         </Route>
       </Routes>
     </Router>
