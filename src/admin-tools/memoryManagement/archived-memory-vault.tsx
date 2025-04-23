@@ -15,7 +15,9 @@ import {
 } from "lucide-react";
 
 const ArchivedMemoryVault = () => {
-  const [expandedSection, setExpandedSection] = useState<string | null>("archive");
+  const [expandedSection, setExpandedSection] = useState<string | null>(
+    "archive"
+  );
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
   // Mock data for archived items

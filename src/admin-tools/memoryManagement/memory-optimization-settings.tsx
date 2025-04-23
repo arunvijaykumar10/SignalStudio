@@ -299,12 +299,7 @@ const MemoryOptimizationSettings = () => {
                 <button className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
                   Test Configuration
                 </button>
-                <button
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
-                  onClick={() =>
-                    navigate("/dashboard/admintools/memorymanageement/2")
-                  }
-                >
+                <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
                   Save Advanced Settings
                 </button>
               </div>
@@ -317,7 +312,9 @@ const MemoryOptimizationSettings = () => {
       <div className="px-6 pb-6">
         <button
           className="w-full py-3 border border-dashed border-gray-300 rounded-lg text-gray-500 flex items-center justify-center hover:bg-gray-50"
-          onClick={() => {}}
+          onClick={() =>
+            navigate("/dashboard/admintools/memorymanageement/archivedmemory")
+          }
         >
           <span className="text-sm">Access Archived Memory Vault</span>
           <ChevronDown className="w-4 h-4 ml-2" />

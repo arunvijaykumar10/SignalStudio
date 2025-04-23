@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 const MemoryManagement = () => {
   const [expandedSection, setExpandedSection] = useState("overview");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // Mock data
   const memoryStats = {
@@ -308,8 +308,7 @@ const MemoryManagement = () => {
 
             {/* Manage connection button */}
             <div className="flex justify-end mt-6">
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-md font-medium flex items-center"
-              onClick={()=> navigate('/dashboard/admintools/memorymanageement/1')}>
+              <button className="px-4 py-2 bg-blue-600 text-white rounded-md font-medium flex items-center">
                 <Settings className="w-4 h-4 mr-2" />
                 Manage DB Connection
               </button>
@@ -322,7 +321,9 @@ const MemoryManagement = () => {
       <div className="px-6 pb-6">
         <button
           className="w-full py-3 border border-dashed border-gray-300 rounded-lg text-gray-500 flex items-center justify-center hover:bg-gray-50"
-          onClick={() => {}}
+          onClick={() =>
+            navigate("/dashboard/admintools/memorymanageement/retention")
+          }
         >
           <span className="text-sm">Show Data Retention & Expiry Rules</span>
           <ChevronDown className="w-4 h-4 ml-2" />

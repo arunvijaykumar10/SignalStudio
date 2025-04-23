@@ -392,12 +392,7 @@ const ManualMemoryCleanup = () => {
                 <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200">
                   Apply Suggested Actions
                 </button>
-                <button
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
-                  onClick={() =>
-                    navigate("/dashboard/admintools/memorymanageement/3")
-                  }
-                >
+                <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
                   Save Changes
                 </button>
               </div>
@@ -410,7 +405,11 @@ const ManualMemoryCleanup = () => {
       <div className="px-6 pb-6">
         <button
           className="w-full py-3 border border-dashed border-gray-300 rounded-lg text-gray-500 flex items-center justify-center hover:bg-gray-50"
-          onClick={() => {}}
+          onClick={() =>
+            navigate(
+              "/dashboard/admintools/memorymanageement/memoryoptimization"
+            )
+          }
         >
           <span className="text-sm">
             Show Memory Optimization Settings (Advanced)

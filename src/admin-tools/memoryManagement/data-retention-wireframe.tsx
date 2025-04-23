@@ -320,12 +320,7 @@ const DataRetentionExpiry = () => {
               <button className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
                 Cancel
               </button>
-              <button
-                className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700"
-                onClick={() =>
-                  navigate("/dashboard/admintools/memorymanageement/4")
-                }
-              >
+              <button className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700">
                 Save Changes
               </button>
             </div>
@@ -337,7 +332,9 @@ const DataRetentionExpiry = () => {
       <div className="px-6 pb-6">
         <button
           className="w-full py-3 border border-dashed border-gray-300 rounded-lg text-gray-500 flex items-center justify-center hover:bg-gray-50"
-          onClick={() => {}}
+          onClick={() =>
+            navigate("/dashboard/admintools/memorymanageement/manualmemory")
+          }
         >
           <span className="text-sm">Show Manual Memory Cleanup</span>
           <ChevronDown className="w-4 h-4 ml-2" />
