@@ -83,19 +83,19 @@ const Main = () => {
             element={<MemoryManagement />}
           />
           <Route
-            path="admintools/memorymanageement/1"
+            path="admintools/memorymanageement/memoryoptimization"
             element={<MemoryOptimizationSettings />}
           />
           <Route
-            path="admintools/memorymanageement/2"
+            path="admintools/memorymanageement/manualmemory"
             element={<ManualMemoryCleanup />}
           />
           <Route
-            path="admintools/memorymanageement/3"
+            path="admintools/memorymanageement/retention"
             element={<DataRetentionExpiry />}
           />
           <Route
-            path="admintools/memorymanageement/4"
+            path="admintools/memorymanageement/archivedmemory"
             element={<ArchivedMemoryVault />}
           />
           <Route path="admintools/team" element={<TeamManagement />} />

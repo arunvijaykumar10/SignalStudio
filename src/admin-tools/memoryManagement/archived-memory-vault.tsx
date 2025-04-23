@@ -17,7 +17,9 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const ArchivedMemoryVault = () => {
-  const [expandedSection, setExpandedSection] = useState<string | null>("archive");
+  const [expandedSection, setExpandedSection] = useState<string | null>(
+    "archive"
+  );
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const navigate = useNavigate();
 
