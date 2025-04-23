@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   LineChart,
   Line,
@@ -13,13 +13,11 @@ import {
 } from "recharts";
 import {
   AlertTriangle,
-  Bell,
   Calendar,
   ChevronDown,
   Download,
   Filter,
   RefreshCw,
-  Search,
   Settings,
   Zap,
 } from "lucide-react";
@@ -122,13 +120,20 @@ const DriftInsightDashboard = () => {
 
   // Format date for display
   const formatDate = (dateString: string | number | Date) => {
-    const options: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
+    const options: Intl.DateTimeFormatOptions = {
+      month: "short",
+      day: "numeric",
+    };
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
   // Format the tooltip date for the charts
   const formatTooltipDate = (dateString: string | number | Date) => {
-    const options: Intl.DateTimeFormatOptions = { year: "numeric", month: "short", day: "numeric" };
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    };
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
@@ -136,7 +141,9 @@ const DriftInsightDashboard = () => {
   const formatAlertTime = (dateString: string | number | Date) => {
     const date = new Date(dateString);
     const now = new Date();
-    const diffDays = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
+    const diffDays = Math.floor(
+      (now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24)
+    );
 
     if (diffDays === 0) {
       return "Today";
@@ -313,7 +320,9 @@ const DriftInsightDashboard = () => {
                       tickFormatter={(value: any) => `${value}`}
                     />
                     <Tooltip
-                      labelFormatter={(value: string | number | Date) => formatTooltipDate(value)}
+                      labelFormatter={(value: string | number | Date) =>
+                        formatTooltipDate(value)
+                      }
                       formatter={(value: number) => [
                         `${value}`,
                         value === toneData[0].baseline
@@ -389,14 +398,19 @@ const DriftInsightDashboard = () => {
                     />
                     <YAxis stroke="#9ca3af" />
                     <Tooltip
-                      labelFormatter={(value: string | number | Date) => formatTooltipDate(value)}
+                      labelFormatter={(value: string | number | Date) =>
+                        formatTooltipDate(value)
+                      }
                       formatter={(value: any, name: string | number) => {
                         const displayName = {
                           factual: "Factual Error",
                           citation: "Citation Error",
                           relevance: "Relevance Error",
                         };
-                        return [value, displayName[name as keyof typeof displayName] || name];
+                        return [
+                          value,
+                          displayName[name as keyof typeof displayName] || name,
+                        ];
                       }}
                     />
                     <Legend />

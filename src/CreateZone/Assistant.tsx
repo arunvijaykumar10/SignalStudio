@@ -62,7 +62,7 @@ const Assistant = () => {
   // Handle keyboard shortcuts
   const handleKeyPress = (e: {
     key: string;
-    shiftKey: any;
+    shiftKey: boolean;
     preventDefault: () => void;
   }) => {
     if (e.key === "Enter" && !e.shiftKey) {

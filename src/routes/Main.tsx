@@ -22,10 +22,17 @@ import SnippetManager from "../memory-zone/SnippetManager";
 import SignalExportHub from "../public-zone/ExportHub";
 import IntegrationLayer from "../public-zone/Integration";
 import SignalObjectProtocolViewer from "../public-zone/ProtocolViewer";
+import UserProfileWireframe from "../user-settings/UserSettings";
 import TeamManagement from "../admin-tools/team/TeamManagement";
 import CLISDKPanel from "../public-zone/SDK";
 import SystemOverview from "../SystemOverview";
 import RoleBasedAccessControl from "../admin-tools/access-control/RoleBasedAccessControl";
+import BrandIdentitySetup from "../admin-tools/onboarding-wizard/BrandIdentitySetup";
+import ToneAndGovernanceSetup from "../admin-tools/onboarding-wizard/ToneAndGovernanceSetup";
+import PromptSnippetImport from "../admin-tools/onboarding-wizard/PromptSnippetImport";
+import IntegrationSetup from "../admin-tools/onboarding-wizard/IntegrationSetup";
+import TeamInvitesSetup from "../admin-tools/onboarding-wizard/TeamInvitesSetup";
+import WorkspaceSummary from "../admin-tools/onboarding-wizard/WorkspaceSummary";
 import MemoryManagement from "../admin-tools/memoryManagement/MemoryManagement";
 import MemoryOptimizationSettings from "../admin-tools/memoryManagement/memory-optimization-settings";
 import ManualMemoryCleanup from "../admin-tools/memoryManagement/manual-memory-cleanup";
@@ -68,6 +75,7 @@ const Main = () => {
             path="publishzone/protocol"
             element={<SignalObjectProtocolViewer />}
           />
+          <Route path="settings" element={<UserProfileWireframe />} />
           {/* Analytics */}
           {/* Admin Tools */}
           <Route
@@ -100,6 +108,30 @@ const Main = () => {
           <Route
             path="admintools/access"
             element={<RoleBasedAccessControl />}
+          />
+          <Route
+            path="admintools/access/wizard"
+            element={<BrandIdentitySetup />}
+          />
+          <Route
+            path="admintools/access/wizard/tone"
+            element={<ToneAndGovernanceSetup />}
+          />
+          <Route
+            path="admintools/access/wizard/prompt"
+            element={<PromptSnippetImport />}
+          />
+          <Route
+            path="admintools/access/wizard/intergations"
+            element={<IntegrationSetup />}
+          />
+          <Route
+            path="admintools/access/wizard/teaminvites"
+            element={<TeamInvitesSetup />}
+          />
+          <Route
+            path="admintools/access/wizard/summary"
+            element={<WorkspaceSummary />}
           />
         </Route>
       </Routes>
