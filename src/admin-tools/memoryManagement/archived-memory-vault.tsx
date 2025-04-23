@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import {
   ChevronDown,
   ChevronUp,
@@ -12,13 +12,16 @@ import {
   Clock,
   AlertTriangle,
   FileText,
+  ArrowLeft,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const ArchivedMemoryVault = () => {
   const [expandedSection, setExpandedSection] = useState<string | null>(
     "archive"
   );
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const navigate = useNavigate();
 
   // Mock data for archived items
   const archivedItems = [
@@ -93,6 +96,12 @@ const ArchivedMemoryVault = () => {
           onClick={() => toggleSection("archive")}
         >
           <h2 className="text-lg font-semibold text-gray-800 flex items-center">
+            <button
+              className="mr-3 text-gray-500 hover:text-gray-700"
+              onClick={() => navigate(-1)}
+            >
+              <ArrowLeft size={20} />
+            </button>
             <Archive className="w-5 h-5 mr-2 text-blue-600" />
             Archived Memory Vault
           </h2>
