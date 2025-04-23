@@ -22,6 +22,7 @@ import {
   X,
 } from "lucide-react";
 import { Outlet, useNavigate } from "react-router-dom";
+import NotificationPopover from "./NotificationPopover";
 
 const Dashboard = () => {
   const [activeSidebarItem, setActiveSidebarItem] = useState("Overview");
@@ -145,7 +146,14 @@ const Dashboard = () => {
     }
   };
 
-  const handlePinItem = (item: { id: string; title?: string; type?: string; lastUsed?: string; toneScore?: number; tags?: string[]; }) => {
+  const handlePinItem = (item: {
+    id: string;
+    title?: string;
+    type?: string;
+    lastUsed?: string;
+    toneScore?: number;
+    tags?: string[];
+  }) => {
     // Check if already pinned
     const isPinned = pinnedItems.some(
       (pinnedItem) => pinnedItem.id === item.id
@@ -688,12 +696,7 @@ const Dashboard = () => {
               <Wand2 className="w-4 h-4 mr-2" />
               Onboarding Wizard
             </button>
-            <button className="relative">
-              <Bell size={20} />
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                3
-              </span>
-            </button>
+            <NotificationPopover />
 
             <div
               className="flex items-center cursor-pointer"
@@ -706,8 +709,6 @@ const Dashboard = () => {
             </div>
           </div>
         </header>
-
-        {/* Content */}
         <div>
           <Outlet />
         </div>
