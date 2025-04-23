@@ -14,6 +14,7 @@ import {
   RefreshCw,
   Download,
   Brain,
+  ArrowLeft,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -109,6 +110,12 @@ const ManualMemoryCleanup = () => {
           onClick={() => toggleSection("cleanup")}
         >
           <h2 className="text-lg font-semibold text-gray-800 flex items-center">
+            <button
+              className="mr-3 text-gray-500 hover:text-gray-700"
+              onClick={() => navigate(-1)}
+            >
+              <ArrowLeft size={20} />
+            </button>
             <Trash2 className="w-5 h-5 mr-2 text-blue-600" />
             Manual Memory Cleanup
           </h2>
