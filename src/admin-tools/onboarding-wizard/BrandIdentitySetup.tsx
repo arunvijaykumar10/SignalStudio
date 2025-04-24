@@ -1,22 +1,16 @@
-import React, { useState } from "react";
-import {
-  ChevronRight,
-  ChevronLeft,
-  Upload,
-  Check,
-  AlertCircle,
-} from "lucide-react";
+import { useState } from "react";
+import { ChevronRight, Upload, Check, AlertCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const BrandIdentitySetup = () => {
   const navigate = useNavigate();
-  const [brandLogo, setBrandLogo] = useState(null);
+  const [brandLogo, setBrandLogo] = useState<string | null>(null);
   const [primaryColor, setPrimaryColor] = useState("#4F46E5");
   const [secondaryColor, setSecondaryColor] = useState("#10B981");
   const [fontChoice, setFontChoice] = useState("Inter");
 
   // Mock function for logo upload
-  const handleLogoUpload = (e) => {
+  const handleLogoUpload = (_e: React.ChangeEvent<HTMLInputElement> ) => {
     // In a real implementation, this would handle file upload
     setBrandLogo("logo-placeholder.svg");
   };
@@ -108,12 +102,16 @@ const BrandIdentitySetup = () => {
                 <p className="text-sm text-gray-500 mb-4">
                   SVG or PNG recommended (max 2MB)
                 </p>
-                <button
-                  className="px-4 py-2 rounded bg-indigo-600 text-white font-medium"
-                  onClick={handleLogoUpload}
+                <label
+                  className="px-4 py-2 rounded bg-indigo-600 text-white font-medium cursor-pointer"
                 >
                   Select File
-                </button>
+                  <input
+                    type="file"
+                    className="hidden"
+                    onChange={handleLogoUpload}
+                  />
+                </label>
               </div>
             )}
           </div>

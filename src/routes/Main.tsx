@@ -38,6 +38,10 @@ import MemoryOptimizationSettings from "../admin-tools/memoryManagement/memory-o
 import ManualMemoryCleanup from "../admin-tools/memoryManagement/manual-memory-cleanup";
 import ArchivedMemoryVault from "../admin-tools/memoryManagement/archived-memory-vault";
 import DataRetentionExpiry from "../admin-tools/memoryManagement/data-retention-wireframe";
+import AuditTrailView from "../analytics/AuditTrails";
+import ContentManagementWorkspace from "../signals/Signals";
+import UsageDashboard from "../analytics/UsageDashboard";
+import ContentDetailView from "../signals/ContentDetails";
 
 const Main = () => {
   return (
@@ -77,6 +81,9 @@ const Main = () => {
           />
           <Route path="settings" element={<UserProfileWireframe />} />
           {/* Analytics */}
+          <Route path="analytics/usagedashboard" element={<UsageDashboard />} />
+          <Route path="analytics/audittrail" element={<AuditTrailView />} />
+
           {/* Admin Tools */}
           <Route
             path="admintools/memorymanageement"
@@ -132,6 +139,14 @@ const Main = () => {
           <Route
             path="admintools/access/wizard/summary"
             element={<WorkspaceSummary />}
+          />
+          <Route
+            path="signals/contentmanagement"
+            element={<ContentManagementWorkspace />}
+          />  
+          <Route
+            path="contentmanagement/details"
+            element={<ContentDetailView />}
           />
         </Route>
       </Routes>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Search,
   UserPlus,
@@ -11,7 +11,6 @@ import {
   Info,
   Users,
 } from "lucide-react";
-import RoleDefinitionsDemo from "./RoleDefenitionsDrawer";
 import RoleDefinitionsDrawer from "./RoleDefenitionsDrawer";
 
 const TeamManagement = () => {

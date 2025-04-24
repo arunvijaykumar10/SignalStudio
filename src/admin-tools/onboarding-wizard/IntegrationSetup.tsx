@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   ChevronRight,
-  ChevronLeft,
   Check,
   ExternalLink,
   Shield,
@@ -19,10 +18,8 @@ const IntegrationSetup = () => {
     googleDrive: { enabled: false, connected: false, needsAuth: true },
   });
 
-  const [activeConfig, setActiveConfig] = useState(null);
-
   // Mock function to toggle integration on/off
-  const toggleIntegration = (key) => {
+  const toggleIntegration = (key: string) => {
     setIntegrations({
       ...integrations,
       [key]: {

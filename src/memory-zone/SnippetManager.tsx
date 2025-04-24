@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Search,
   Edit,
@@ -7,7 +7,6 @@ import {
   Tag,
   AlertCircle,
   Clock,
-  Check,
   X,
   Filter,
   ChevronDown,
@@ -95,9 +94,27 @@ const SnippetManager = () => {
 
   const [filteredSnippets, setFilteredSnippets] = useState(snippets);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedSnippet, setSelectedSnippet] = useState(null);
+  const [selectedSnippet, setSelectedSnippet] = useState<{
+    id: number;
+    title: string;
+    preview: string;
+    toneTag: string;
+    lastUsed: string;
+    category: string;
+    language: string;
+    brandTier: string;
+    status: string;
+    usageCount: number;
+    campaigns: string[];
+    updatedBy: string;
+  } | null>(null);
   const [filterOpen, setFilterOpen] = useState(false);
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<{
+    category: string[];
+    language: string[];
+    brandTier: string[];
+    status: string[];
+  }>({
     category: [],
     language: [],
     brandTier: [],
@@ -148,11 +165,26 @@ const SnippetManager = () => {
     setFilteredSnippets(results);
   }, [searchQuery, filters, snippets]);
 
-  const handleSnippetClick = (snippet) => {
+  const handleSnippetClick = (
+    snippet: {
+      id: number;
+      title: string;
+      preview: string;
+      toneTag: string;
+      lastUsed: string;
+      category: string;
+      language: string;
+      brandTier: string;
+      status: string;
+      usageCount: number;
+      campaigns: string[];
+      updatedBy: string;
+    } | null
+  ) => {
     setSelectedSnippet(snippet);
   };
 
-  const formatDate = (dateString) => {
+  const formatDate = (dateString: string | number | Date) => {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", {
       month: "short",
@@ -161,18 +193,21 @@ const SnippetManager = () => {
     });
   };
 
-  const handleFilterChange = (filterType, value) => {
+  const handleFilterChange = (filterType: string, value: string) => {
     setFilters((prevFilters) => {
       const updatedFilters = { ...prevFilters };
 
-      if (updatedFilters[filterType].includes(value)) {
+      if (updatedFilters[filterType as keyof typeof filters].includes(value)) {
         // Remove the value if it's already selected
-        updatedFilters[filterType] = updatedFilters[filterType].filter(
-          (item) => item !== value
-        );
+        updatedFilters[filterType as keyof typeof filters] = updatedFilters[
+          filterType as keyof typeof filters
+        ].filter((item) => item !== value);
       } else {
         // Add the value if it's not already selected
-        updatedFilters[filterType] = [...updatedFilters[filterType], value];
+        updatedFilters[filterType as keyof typeof filters] = [
+          ...updatedFilters[filterType as keyof typeof filters],
+          value,
+        ];
       }
 
       return updatedFilters;
@@ -189,7 +224,7 @@ const SnippetManager = () => {
     setSearchQuery("");
   };
 
-  const getStatusColor = (status) => {
+  const getStatusColor = (status: string) => {
     switch (status) {
       case "Approved":
         return "bg-green-100 text-green-800";
