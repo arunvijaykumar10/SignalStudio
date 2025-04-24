@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  Bell,
   Search,
   User,
   ChevronDown,
@@ -23,6 +22,7 @@ import {
 } from "lucide-react";
 import { Outlet, useNavigate } from "react-router-dom";
 import NotificationPopover from "./NotificationPopover";
+import ContentManagementWorkspace from "./signals/Signals";
 
 const Dashboard = () => {
   const [activeSidebarItem, setActiveSidebarItem] = useState("Overview");
@@ -492,6 +492,7 @@ const Dashboard = () => {
               "Publish Zone",
               "Analytics",
               "Admin Tools",
+              "Signals",
             ].map((item) => (
               <li key={item} className="mb-1">
                 <button
@@ -626,10 +627,24 @@ const Dashboard = () => {
                       ))}
 
                     {item === "Analytics" &&
-                      ["Usage Dashboard", "Audit Trail"].map((subItem) => (
-                        <li key={subItem} className="mb-1">
-                          <button className="text-sm p-1 hover:text-indigo-700 w-full text-left">
-                            {subItem}
+                      [
+                        {
+                          title: "Usage Dashboard",
+                          path: "/analytics/usagedashboard",
+                        },
+                        {
+                          title: "Audit Trail",
+                          path: "/analytics/audittrail",
+                        },
+                      ].map((subItem) => (
+                        <li key={subItem.title} className="mb-1">
+                          <button
+                            className="text-sm p-1 hover:text-indigo-700 w-full text-left"
+                            onClick={() =>
+                              navigate(`/dashboard${subItem.path}`)
+                            }
+                          >
+                            {subItem.title}
                           </button>
                         </li>
                       ))}
@@ -651,6 +666,24 @@ const Dashboard = () => {
                         {
                           title: "Access Control",
                           path: "/admintools/access",
+                        },
+                      ].map((subItem) => (
+                        <li key={subItem.title} className="mb-1">
+                          <button
+                            className="text-sm p-1 hover:text-indigo-700 w-full text-left"
+                            onClick={() =>
+                              navigate(`/dashboard${subItem.path}`)
+                            }
+                          >
+                            {subItem.title}
+                          </button>
+                        </li>
+                      ))}
+                    {item === "Signals" &&
+                      [
+                        {
+                          title: "Content Management",
+                          path: "/signals/contentmanagement",
                         },
                       ].map((subItem) => (
                         <li key={subItem.title} className="mb-1">

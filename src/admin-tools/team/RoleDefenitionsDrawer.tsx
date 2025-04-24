@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   X,
   CheckCircle,
@@ -9,9 +9,14 @@ import {
   Info,
 } from "lucide-react";
 
-const RoleDefinitionsDrawer = ({ isOpen, onClose }) => {
+interface RoleDefinitionsDrawerProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const RoleDefinitionsDrawer = ({ isOpen, onClose }: RoleDefinitionsDrawerProps) => {
   const [expandedSection, setExpandedSection] = useState("definitions"); // 'definitions', 'permissions', 'matrix'
-  const [expandedRole, setExpandedRole] = useState(null);
+  const [expandedRole, setExpandedRole] = useState<string | null>(null);
 
   // Role definitions
   const roles = [
@@ -200,7 +205,7 @@ const RoleDefinitionsDrawer = ({ isOpen, onClose }) => {
   };
 
   // Helper function to render access level badge
-  const renderAccessBadge = (level) => {
+  const renderAccessBadge = (level: string) => {
     switch (level) {
       case "full":
         return (
@@ -409,25 +414,25 @@ const RoleDefinitionsDrawer = ({ isOpen, onClose }) => {
                         </td>
                         <td className="px-3 py-3 whitespace-nowrap text-sm">
                           {renderAccessBadge(
-                            permissionMatrix.create.roleAccess[role.id]
+                            permissionMatrix.create.roleAccess[role.id as keyof typeof permissionMatrix.create.roleAccess]
                               ?.level || "none"
                           )}
                         </td>
                         <td className="px-3 py-3 whitespace-nowrap text-sm">
                           {renderAccessBadge(
-                            permissionMatrix.memory.roleAccess[role.id]
+                            permissionMatrix.memory.roleAccess[role.id as keyof typeof permissionMatrix.memory.roleAccess]
                               ?.level || "none"
                           )}
                         </td>
                         <td className="px-3 py-3 whitespace-nowrap text-sm">
                           {renderAccessBadge(
-                            permissionMatrix.publish.roleAccess[role.id]
+                            permissionMatrix.publish.roleAccess[role.id as keyof typeof permissionMatrix.publish.roleAccess]
                               ?.level || "none"
                           )}
                         </td>
                         <td className="px-3 py-3 whitespace-nowrap text-sm">
                           {renderAccessBadge(
-                            permissionMatrix.validator.roleAccess[role.id]
+                            permissionMatrix.validator.roleAccess[role.id as keyof typeof permissionMatrix.validator.roleAccess]
                               ?.level || "none"
                           )}
                         </td>

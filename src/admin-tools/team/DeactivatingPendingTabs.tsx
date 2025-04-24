@@ -1,13 +1,9 @@
-import React, { useState } from "react";
+import { SetStateAction, useState } from "react";
 import {
   PlusCircle,
   Search,
-  MoreHorizontal,
   ChevronDown,
   Filter,
-  Download,
-  Save,
-  RefreshCw,
   CheckSquare,
   Square,
   Mail,
@@ -17,8 +13,6 @@ import {
   XCircle,
   Clock,
   Calendar,
-  ArrowRight,
-  ArrowLeftRight,
   RotateCcw,
   Trash2,
 } from "lucide-react";
@@ -33,14 +27,25 @@ const DeactivatedPendingTabs = () => {
   const [sortBy, setSortBy] = useState("date"); // 'date', 'name', 'role'
 
   // Selected items for bulk actions
-  const [selectedUsers, setSelectedUsers] = useState([]);
+  const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
 
   // Modal states
   const [showResendModal, setShowResendModal] = useState(false);
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [showReactivateModal, setShowReactivateModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [selectedUserForAction, setSelectedUserForAction] = useState(null);
+  const [selectedUserForAction, setSelectedUserForAction] = useState<null | {
+    id: number;
+    name: string;
+    email: string;
+    role: string;
+    inviteSent?: string;
+    expiresIn?: string;
+    deactivationDate?: string;
+    deactivatedBy?: string;
+    lastActive?: string;
+    status: string;
+  }>(null);
 
   // Sample data for pending invites
   const pendingInvites = [
@@ -136,7 +141,7 @@ const DeactivatedPendingTabs = () => {
   });
 
   // Toggle user selection for bulk actions
-  const toggleUserSelection = (userId) => {
+  const toggleUserSelection = (userId: number) => {
     if (selectedUsers.includes(userId)) {
       setSelectedUsers(selectedUsers.filter((id) => id !== userId));
     } else {
@@ -154,7 +159,21 @@ const DeactivatedPendingTabs = () => {
   };
 
   // Handle action on single user
-  const handleAction = (action, user) => {
+  const handleAction = (
+    action: string,
+    user: {
+      id: number;
+      name: string;
+      email: string;
+      role: string;
+      inviteSent?: string;
+      expiresIn?: string;
+      deactivationDate?: string;
+      deactivatedBy?: string;
+      lastActive?: string;
+      status: string;
+    }
+  ) => {
     setSelectedUserForAction(user);
 
     switch (action) {
@@ -176,7 +195,7 @@ const DeactivatedPendingTabs = () => {
   };
 
   // Handle bulk action
-  const handleBulkAction = (action) => {
+  const handleBulkAction = (action: string) => {
     // In a real app, this would handle multiple users
     // For the demo, we'll just show the same modals
     switch (action) {
@@ -473,7 +492,7 @@ const DeactivatedPendingTabs = () => {
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center text-sm text-gray-500">
                             <Clock size={14} className="mr-1 text-gray-400" />
-                            {user.inviteSent}
+                            {"inviteSent" in user ? user.inviteSent : ""}
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
@@ -482,7 +501,7 @@ const DeactivatedPendingTabs = () => {
                               size={14}
                               className="mr-1 text-gray-400"
                             />
-                            {user.expiresIn}
+                            {"expiresIn" in user ? user.expiresIn : ""}
                           </div>
                         </td>
                       </>
@@ -490,12 +509,14 @@ const DeactivatedPendingTabs = () => {
                       <>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm text-gray-500">
-                            {user.deactivationDate}
+                            {"deactivationDate" in user
+                              ? user.deactivationDate
+                              : ""}
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm text-gray-500">
-                            {user.deactivatedBy}
+                            {"deactivatedBy" in user ? user.deactivatedBy : ""}
                           </div>
                         </td>
                       </>
@@ -553,7 +574,7 @@ const DeactivatedPendingTabs = () => {
               ) : (
                 <tr>
                   <td
-                    colSpan="7"
+                    colSpan={7}
                     className="px-6 py-10 text-center text-gray-500"
                   >
                     {activeTab === "pending"
@@ -656,7 +677,7 @@ const DeactivatedPendingTabs = () => {
                 </label>
                 <textarea
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                  rows="3"
+                  rows={3}
                   placeholder="Add a personal note to the invitation email..."
                 ></textarea>
               </div>

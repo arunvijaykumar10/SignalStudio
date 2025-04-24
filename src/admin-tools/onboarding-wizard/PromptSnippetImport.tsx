@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   ChevronRight,
-  ChevronLeft,
   Check,
   Upload,
   FileText,
-  Tag,
   Plus,
   Star,
   RefreshCw,

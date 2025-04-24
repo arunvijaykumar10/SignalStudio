@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   ChevronRight,
-  ChevronLeft,
   Check,
   AlertCircle,
   Plus,
   X,
-  Trash2,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -37,7 +35,7 @@ const ToneAndGovernanceSetup = () => {
   };
 
   // Mock function to remove a restricted keyword
-  const removeKeyword = (index) => {
+  const removeKeyword = (index: number) => {
     const updatedKeywords = [...restrictedKeywords];
     updatedKeywords.splice(index, 1);
     setRestrictedKeywords(updatedKeywords);
